@@ -2,11 +2,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 
 // ----- import slice -----
-import storeSlice from "../modules/storeSlice";
-import menuSlice from "../modules/menuSlice";
+import stores from "../modules/storeSlice";
+import menus from "../modules/menuSlice";
 
 const store = configureStore({
-  reducer: { storeSlice, menuSlice },
+  reducer: { stores, menus },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(logger),
 });

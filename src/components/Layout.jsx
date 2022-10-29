@@ -12,11 +12,11 @@ const Layout = (props) => {
 export default Layout;
 
 const StLayout = styled.div`
-    max-width :410px;
+    max-width :390px;
     max-height:844px;
-    width:410px;
+    width:390px;
     height:844px;
     margin: 0 auto;
-    background-color: #e2eeee;
+    background-color: white;
     position: relative;
 `

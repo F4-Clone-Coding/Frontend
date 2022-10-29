@@ -2,9 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import Layout from '../components/Layout'
 import { IoArrowBackOutline } from "react-icons/io5";
-import { IoCartOutline } from "react-icons/io5";
-import { IoHomeOutline } from "react-icons/io5";
+import { FaUserAlt } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom'
+import Category from '../components/Category';
 
 const Store = () => {
     const navigate = useNavigate()
@@ -13,13 +14,14 @@ const Store = () => {
             <StoreWrap>
                 <HeaderBox>
                     <div className='a'>
-                        <IoArrowBackOutline className='icon' onClick={() => navigate('/user/login')} />&nbsp;&nbsp;<p>1인분</p>
+                        <IoArrowBackOutline className='icon' onClick={() => navigate('/user/login')} />&nbsp;&nbsp;<p>배달만민족</p>
                     </div>
                     <div className='b'>
-                        <IoHomeOutline className='icon' onClick={() => navigate('/')} />
-                        <IoCartOutline className='icon' />
+                        <FaHome className='icon' onClick={() => navigate('/')} />
+                        <FaUserAlt className='icon' />
                     </div>
                 </HeaderBox>
+                <Category />
 
             </StoreWrap>
         </Layout>
@@ -35,7 +37,7 @@ const HeaderBox = styled.div`
     justify-content: space-between;
     width:95%;
     height: 30px;
-    font-size:25px;
+    font-size:24px;
     border: none;
     padding: 20px 10px;
     .a{
