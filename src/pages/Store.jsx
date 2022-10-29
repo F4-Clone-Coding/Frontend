@@ -18,7 +18,7 @@ const Store = () => {
                     </div>
                     <div className='b'>
                         <FaHome className='icon' onClick={() => navigate('/')} />
-                        <FaUserAlt className='icon' />
+                        <FaUserAlt className='icon' onClick={() => navigate('/mypage')} />
                     </div>
                 </HeaderBox>
                 <Category />
@@ -48,6 +48,9 @@ const HeaderBox = styled.div`
         float:left;
         .icon{
             cursor: pointer;
+            &:hover{
+                color: var(--brand-color)
+            }
         }
         
     }
@@ -60,6 +63,9 @@ const HeaderBox = styled.div`
         gap:18px;
         .icon{
             cursor: pointer;
+            &:hover{
+                color: var(--brand-color)
+            }
         }
     }
 `

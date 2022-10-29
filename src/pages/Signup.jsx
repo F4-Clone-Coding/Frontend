@@ -61,6 +61,9 @@ const SignupBox = styled.div`
         display:flex;
         cursor: pointer;
         font-size: 24px;
+        &:hover{
+                color: var(--brand-color)
+            }
     }
     
 `

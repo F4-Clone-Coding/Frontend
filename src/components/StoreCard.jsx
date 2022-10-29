@@ -8,9 +8,9 @@ const StoreCard = ({ store }) => {
     const navigate = useNavigate()
     return (
         <CardBox >
-            <img alt="a" className='img' src={BeaminImg} onClick={() => navigate(`/store/${store.storeId}`)} />
+            <img alt="a" className='img' src={BeaminImg} onClick={() => navigate(`/post/${store.storeId}`)} />
             <TextBox>
-                <p id="p1" onClick={() => navigate(`/store/${store.storeId}`)}>{store.storeName}</p>
+                <p id="p1" onClick={() => navigate(`/post/${store.storeId}`)}>{store.storeName}</p>
                 <div >
                     <p style={{ marginBottom: "5px" }}>⭐5.0(100+)</p>
                     <p>배달비 무료</p>

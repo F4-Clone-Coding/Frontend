@@ -17,7 +17,7 @@ const MyPage = () => {
                 </HeaderBox>
                 <NameBox>
                     <img alt='a' src="https://heurm-tutorial.vlpt.us/images/default_thumbnail.png" />
-                    <Input inp="inp2" type="text" placeholder='닉네임' />
+                    <Input inp="inp3" type="text" placeholder='닉네임' />
                 </NameBox>
                 <PasswordBox>
                     <p>이메일&nbsp;&nbsp;  test@gmail.com</p>
