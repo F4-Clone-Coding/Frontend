@@ -6,10 +6,6 @@ export default function Button({ children, ...restProps }) {
 }
 
 const Btn = styled.button`
-  height: 62px;
-  border-radius: 6px;
-  position: absolute;
-  bottom: 15px;
   ${({ btn }) => {
     switch (btn) {
       case "btn1":
@@ -26,28 +22,40 @@ const Btn = styled.button`
 
 export const btn1 = css`
   width: 381px;
+  height: 62px;
   background-color: var(--brand-color);
   color: white;
   border: none;
   transition: all 0.2s linear;
   font-size: 16px;
   margin: 0;
+  position: absolute;
+  bottom: 15px;
+  border-radius: var(--sm-radius);
   cursor: pointer;
   &:hover {
     background-color: white;
-    color: var(--brand-color);
-    border: 1px solid var(--brand-color);
+    color: #2ac1bc;
+    border: 1px solid #2ac1bc;
   }
 `;
 export const btn2 = css`
-  width: 7rem;
-  height: 4rem;
-  background-color: #293991;
-  color: white;
+  width: 150px;
+  height: 30px;
   border: none;
-  border-radius: 5px;
+  background: var(--brand-color);
+  color: white;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+  border-radius: var(--sm-radius);
+  cursor: pointer;
   &:hover {
-    background-color: #1b2661;
+    background: white;
+    color: var(--brand-color);
+    border: 1px solid var(--brand-color);
   }
 `;
 export const btn3 = css`

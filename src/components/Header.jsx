@@ -9,10 +9,8 @@ const Header = () => {
 
   return (
     <StHeaderContainer>
-      <StBtnWrap>
-        <IoArrowBackOutline className="icon" onClick={() => navigate("/")} />
-        <FaHome className="icon" onClick={() => navigate("/")} />
-      </StBtnWrap>
+      <IoArrowBackOutline className="icon" onClick={() => navigate("/")} />
+      <FaHome className="icon" onClick={() => navigate("/")} />
     </StHeaderContainer>
   );
 };
@@ -20,16 +18,18 @@ const Header = () => {
 export default Header;
 
 const StHeaderContainer = styled.div`
+  /* background: white; */
+  width: 100%;
   position: absolute;
   top: 0;
-`;
-
-const StBtnWrap = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 10px 10px;
   .icon {
-    cursor: pointer;
     font-size: 24px;
+    padding: 10px 14px;
+    cursor: pointer;
+    &:hover {
+      color: var(--brand-color);
+    }
   }
 `;

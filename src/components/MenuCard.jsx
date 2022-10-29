@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Menu = () => {
   return (
-    <div style={{ background: "red" }}>
+    <StMenuContainer>
       <div
         style={{
           padding: "8px",
@@ -22,15 +22,25 @@ const Menu = () => {
           <StSubTitle>가격</StSubTitle>
         </div>
         <img
-          style={{ background: "blue", width: "100px", height: "100px" }}
-          src=""
+          style={{
+            width: "100px",
+            height: "100px",
+            boxShadow: "var(--box-shadow)",
+          }}
+          src="http://www.datanet.co.kr/news/photo/201902/131191_57145_3939.jpg"
         />
       </div>
-    </div>
+    </StMenuContainer>
   );
 };
 
 export default Menu;
+
+const StMenuContainer = styled.div`
+  width: 95%;
+  margin-top: 16px;
+  box-shadow: var(--box-shadow);
+`;
 
 const StTitle = styled.p`
   margin: 12px 0px;
@@ -39,8 +49,3 @@ const StTitle = styled.p`
 const StSubTitle = styled.p`
   margin: 4px 0px;
 `;
-
-// const StImgBox = styled.div`
-//   background: blue;
-//   width: 100px;
-// `;

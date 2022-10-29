@@ -8,6 +8,7 @@ import Menu from "../components/MenuCard";
 import { getAllMenu } from "../redux/modules/menuSlice";
 
 import styled from "styled-components";
+import { FaPhoneAlt, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
 
 const OrderPost = () => {
   const dispatch = useDispatch();
@@ -33,16 +34,24 @@ const OrderPost = () => {
       <StWrap>
         <StImgBox />
         <StInfoWrap>
-          <p>카페</p>
-          <p>별점</p>
+          <p>CafeTeam4</p>
+          <p>별점: ⭐⭐⭐⭐⭐</p>
           <DescWrap1>
             <p>최근리뷰 100개</p>
             <p>댓글 300개</p>
           </DescWrap1>
           <DescWrap2>
-            <p>전화</p>
-            <p>찜</p>
-            <p>공유</p>
+            <StBtn>
+              <FaPhoneAlt />
+              전화
+            </StBtn>
+            <StBtn>
+              <FaRegHeart />찜
+            </StBtn>
+            <StBtn>
+              <FaRegShareSquare />
+              공유
+            </StBtn>
           </DescWrap2>
         </StInfoWrap>
       </StWrap>
@@ -84,7 +93,6 @@ const StImgBox = styled.div`
   background: black;
   width: 100%;
   height: 300px;
-  margin-top: 5px;
   background-image: url("https://cdn.traveltimes.co.kr/news/photo/202109/113022_11185_1829.jpg");
   background-size: cover;
   box-shadow: var(--box-shadow);
@@ -105,35 +113,52 @@ const DescWrap1 = styled.div`
 
 const DescWrap2 = styled.div`
   display: flex;
-  column-gap: 20px;
+  column-gap: 50px;
+`;
+
+const StBtn = styled.div`
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  cursor: pointer;
+  &:hover {
+    color: var(--brand-color);
+  }
 `;
 
 const StTabWrap = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  column-gap: 3px;
 `;
 
-const StTab = styled.div`
+const StTab = styled.button`
   background: white;
   width: 50%;
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 3px 3px lightgray;
+  box-shadow: 0px 3px 0px lightgray;
+  border: 0;
   cursor: pointer;
   &:hover {
     background: var(--brand-color);
+    color: white;
   }
-  &:active {
-    background: white;
+  &:focus {
+    background: var(--brand-color);
+    color: white;
   }
 `;
 
 const MenuWrap = styled.div`
-  background: yellow;
   width: 100%;
   max-height: 310px;
+  flex-flow: column;
+  display: flex;
+  align-items: center;
   overflow-x: hidden;
   overflow-y: auto;
   &::-webkit-scrollbar {
@@ -142,12 +167,12 @@ const MenuWrap = styled.div`
 `;
 
 const StTotalPriceBox = styled.div`
-  background: yellow;
   height: 50px;
   padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 8px;
 `;
 
 const StBtnBox = styled.div`
