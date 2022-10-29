@@ -2,61 +2,70 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 export default function Button({ children, ...restProps }) {
-    return <Btn {...restProps}>{children}</Btn>;
+  return <Btn {...restProps}>{children}</Btn>;
 }
 
 const Btn = styled.button`
-    height: 62px;
-    border-radius: 6px;
-    position:absolute;
-    bottom:15px;
   ${({ btn }) => {
-        switch (btn) {
-            case "btn1":
-                return btn1;
-            case "btn2":
-                return btn2;
-            case "btn3":
-                return btn3;
-            default:
-                break;
-        }
-    }}
+    switch (btn) {
+      case "btn1":
+        return btn1;
+      case "btn2":
+        return btn2;
+      case "btn3":
+        return btn3;
+      default:
+        break;
+    }
+  }}
 `;
 
 export const btn1 = css`
-    width: 381px;
-    background-color: var(--brand-color);
-    color: white;
-    border: none;
-    transition: all 0.2s linear;
-    font-size: 16px;
-    margin:0;
-    &:hover{
-        background-color: white;
-        color: #2AC1BC;
-        border: 1px solid #2AC1BC;
-    }
+  width: 381px;
+  height: 62px;
+  background-color: var(--brand-color);
+  color: white;
+  border: none;
+  transition: all 0.2s linear;
+  font-size: 16px;
+  margin: 0;
+  position: absolute;
+  bottom: 15px;
+  border-radius: var(--sm-radius);
+  cursor: pointer;
+  &:hover {
+    background-color: white;
+    color: #2ac1bc;
+    border: 1px solid #2ac1bc;
+  }
 `;
 export const btn2 = css`
-    width: 7rem;
-    height: 4rem;
-    background-color: #293991;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    &:hover{
-        background-color: #1b2661;
-    }
+  width: 150px;
+  height: 30px;
+  border: none;
+  background: var(--brand-color);
+  color: white;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+  border-radius: var(--sm-radius);
+  cursor: pointer;
+  &:hover {
+    background: white;
+    color: var(--brand-color);
+    border: 1px solid var(--brand-color);
+  }
 `;
 export const btn3 = css`
-   width: 7rem;
-    height: 4rem;
-    background-color: #293991;
-    color: #ffffff;
-    border: 2px solid white;
-    border-radius: 5px;
-    &:hover{
-        background-color: #1b2661;
-    }
+  width: 7rem;
+  height: 4rem;
+  background-color: #293991;
+  color: #ffffff;
+  border: 2px solid white;
+  border-radius: 5px;
+  &:hover {
+    background-color: #1b2661;
+  }
 `;
