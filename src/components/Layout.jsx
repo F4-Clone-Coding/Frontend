@@ -1,7 +1,8 @@
 import React from "react";
+import styled from "styled-components";
 
-const Layout = () => {
-  return <div>Layout</div>;
+const Layout = ({ childern }) => {
+  return <StLayout>{childern}</StLayout>;
 };
 
 export default Layout;

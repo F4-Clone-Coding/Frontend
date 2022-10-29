@@ -5,7 +5,6 @@ import axios from "axios";
 const initialState = {
   menus: [{}],
   isLoading: false,
-  category: null,
 };
 
 // ----- 해당 스토어 정보 get -----
@@ -13,7 +12,7 @@ export const getAllMenu = createAsyncThunk(
   "menus/getAllMenu",
   async (storeId, thunkAPI) => {
     try {
-      const res = await axios.get(`localhost:3000/store/${storeId}`);
+      const res = await axios.get(`http://localhost:3001/store/${storeId}`);
       return thunkAPI.fulfillWithValue(res.data.data);
     } catch (err) {
       return thunkAPI.rejectWithValue(err);
@@ -31,12 +30,12 @@ const menuSlice = createSlice({
 
   // ----- extraReducer -----
   extraReducers: (builder) => {
-    /* ----------- getALlMenu(해당 스토어의 메뉴 등 정보 조회) ---------------- */
-    builder.addCase(getStoreData.fulfilled, (state, action) => {
+    /* ----------- getAllMenu(해당 스토어의 메뉴 등 정보 조회) ---------------- */
+    builder.addCase(getAllMenu.fulfilled, (state, action) => {
       state.menus = action.payload;
       state.isLoading = false;
     });
-    builder.addCase(getStoreData.rejected, (state) => {
+    builder.addCase(getAllMenu.rejected, (state) => {
       state.isLoading = false;
     });
   },

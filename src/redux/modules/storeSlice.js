@@ -5,7 +5,6 @@ import axios from "axios";
 const initialState = {
   stores: [{}],
   isLoading: false,
-  category: null,
 };
 
 // ----- 모든 스토어 get -----
@@ -13,7 +12,7 @@ export const getAllStore = createAsyncThunk(
   "stores/getAllStore",
   async (_, thunkAPI) => {
     try {
-      const res = await axios.get("localhost:3000");
+      const res = await axios.get("http://localhost:3001");
       return thunkAPI.fulfillWithValue(res.data.data);
     } catch (err) {
       return thunkAPI.rejectWithValue(err);
@@ -26,7 +25,7 @@ export const getStore = createAsyncThunk(
   "stores/getStore",
   async (categoryId, thunkAPI) => {
     try {
-      const res = await axios.get(`localhost:3000/${categoryId}`);
+      const res = await axios.get(`http://localhost:3001/${categoryId}`);
       return thunkAPI.fulfillWithValue(res.data.data);
     } catch (err) {
       return thunkAPI.rejectWithValue(err);

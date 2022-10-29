@@ -1,7 +1,12 @@
 import React from "react";
+import Layout from "../components/Layout";
 
 const Store = () => {
-  return <div>Store</div>;
+  return (
+    <Layout>
+      <div>aaasdasda</div>
+    </Layout>
+  );
 };
 
 export default Store;
