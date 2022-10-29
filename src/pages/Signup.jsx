@@ -2,7 +2,6 @@ import React from 'react'
 import Layout from '../components/Layout'
 import styled from 'styled-components'
 import Button from '../elements/button'
-import Footer from '../components/Footer'
 import { IoArrowBackOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom'
 import Input from '../elements/input'

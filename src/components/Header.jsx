@@ -9,6 +9,9 @@ const Header = () => {
 
 export default Header
 
+
+
+
 const HeaderBox = styled.div`
     width: 405px;
     height: 60px;

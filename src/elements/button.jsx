@@ -39,7 +39,7 @@ export const btn1 = css`
     }
 `;
 export const btn2 = css`
-    width: 7rem;
+    width: 80px;
     height: 4rem;
     background-color: #293991;
     color: white;
