@@ -275,7 +275,7 @@
     }
   ],
 
-  "Store": [
+  "store": [
     {
       "storeCategoryId": 1,
       "storeId": 1,
@@ -304,100 +304,100 @@
       "storeCategoryId": 3,
       "storeId": 5,
       "imageUrl": "https://hangggg",
-      "name": "미소야"
+      "storeName": "미소야"
     },
     {
       "storeCategoryId": 3,
       "storeId": 6,
       "imageUrl": "https://hangggg",
-      "name": "도마29"
+      "storeName": "도마29"
     },
     {
       "storeCategoryId": 4,
       "storeId": 7,
       "imageUrl": "https://hangggg",
-      "name": "롤링파스타"
+      "storeName": "롤링파스타"
     },
     {
       "storeCategoryId": 4,
       "storeId": 8,
       "imageUrl": "https://hangggg",
-      "name": "죠니스 키친"
+      "storeName": "죠니스 키친"
     },
     {
       "storeCategoryId": 5,
       "storeId": 9,
       "imageUrl": "https://hangggg",
-      "name": "쉑쉑"
+      "storeName": "쉑쉑"
     },
     {
       "storeCategoryId": 6,
       "storeId": 10,
       "imageUrl": "https://hangggg",
-      "name": "슬로우 터틀"
+      "storeName": "슬로우 터틀"
     }
   ],
 
-  "Order": [
+  "order": [
     {
       "orderId": 1,
       "userId": 1,
       "storeId": 1,
-      "recods" : {"메뉴":"도쿄롤","price":65000,"장소":"종로3가"}
+      "recods": { "메뉴": "도쿄롤", "price": 65000, "장소": "종로3가" }
     },
     {
       "orderId": 2,
       "userId": 1,
       "storeId": 1,
-      "recods" : {"메뉴":"도쿄롤","price":65000,"장소":"종로3가"}
+      "recods": { "메뉴": "도쿄롤", "price": 65000, "장소": "종로3가" }
     },
     {
       "orderId": 3,
       "userId": 1,
       "storeId": 2,
-      "recods" : {"메뉴":"도쿄롤","price":65000,"장소":"종로3가"}
+      "recods": { "메뉴": "도쿄롤", "price": 65000, "장소": "종로3가" }
     },
     {
       "orderId": 4,
       "userId": 1,
       "storeId": 2,
-      "recods" : {"메뉴":"도쿄롤","price":65000,"장소":"종로3가"}
+      "recods": { "메뉴": "도쿄롤", "price": 65000, "장소": "종로3가" }
     },
     {
       "orderId": 5,
       "userId": 1,
       "storeId": 2,
-      "recods" : {"메뉴":"도쿄롤","price":65000,"장소":"종로3가"}
+      "recods": { "메뉴": "도쿄롤", "price": 65000, "장소": "종로3가" }
     },
     {
       "orderId": 6,
       "userId": 2,
       "storeId": 3,
-      "recods" : {"메뉴":"도쿄롤","price":65000,"장소":"종로3가"}
+      "recods": { "메뉴": "도쿄롤", "price": 65000, "장소": "종로3가" }
     },
     {
       "orderId": 7,
       "userId": 2,
       "storeId": 3,
-      "recods" : {"메뉴":"도쿄롤","price":65000,"장소":"종로3가"}
+      "recods": { "메뉴": "도쿄롤", "price": 65000, "장소": "종로3가" }
     },
     {
       "orderId": 8,
       "userId": 2,
       "storeId": 3,
-      "recods" : {"메뉴":"도쿄롤","price":65000,"장소":"종로3가"}
+      "recods": { "메뉴": "도쿄롤", "price": 65000, "장소": "종로3가" }
     },
     {
       "orderId": 9,
       "userId": 2,
       "storeId": 4,
-      "recods" : {"메뉴":"도쿄롤","price":65000,"장소":"종로3가"}
+      "recods": { "메뉴": "도쿄롤", "price": 65000, "장소": "종로3가" }
     },
     {
       "orderId": 10,
       "userId": 2,
       "storeId": 4,
-      "recods" : {"메뉴":"도쿄롤","price":65000,"장소":"종로3가"}
+      "recods": { "메뉴": "도쿄롤", "price": 65000, "장소": "종로3가" }
     }
   ]
 }

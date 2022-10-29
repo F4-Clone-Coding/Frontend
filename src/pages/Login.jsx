@@ -12,15 +12,18 @@ const Login = () => {
         <Layout>
             <LoginWrap>
                 <div><IoClose className='cancel' onClick={() => navigate('/')} /></div>
-                <FormBox>
-                    <Input inp='inp2' type="email" placeholder='이메일' />
-                    <Input inp='inp2' type="password" placeholder='비밀번호' />
-                    <Button btn="btn1">로그인</Button>
-                </FormBox>
-                <div>
-                    <span>아이디 찾기</span>&nbsp;&nbsp; | &nbsp;&nbsp;<span>비밀번호 찾기</span>
+                <FormWrap>
+                    <FormBox>
+                        <Input inp='inp2' type="email" placeholder='이메일' />
+                        <Input inp='inp2' type="password" placeholder='비밀번호' />
+                        <Button btn="btn1">로그인</Button>
+                    </FormBox>
+                    <TextBox>
+                        <span>아이디 찾기</span>&nbsp;&nbsp; | &nbsp;&nbsp;<span>비밀번호 찾기</span>
+                    </TextBox>
                     <p>혹시, 배달만민족이 처음이신가요? <span style={{ color: "#2AC1BC", cursor: "pointer" }} onClick={() => navigate('/user/signup')}>회원가입</span></p>
-                </div>
+                </FormWrap>
+
 
 
 
@@ -38,7 +41,7 @@ const LoginWrap = styled.div`
     .cancel{
         display:flex;
         cursor: pointer;
-        font-size: 28px;
+        font-size: 24px;
     }
 `
 const FormBox = styled.form`
@@ -46,6 +49,18 @@ const FormBox = styled.form`
     flex-direction: column;
     align-items: center;
     align-content: center;
-    gap:30px;
-    margin-top: 100px;;
+    gap:25px;
+    margin-top: 100px;
+`
+
+const TextBox = styled.div`
+  
+`
+
+const FormWrap = styled.div`
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    gap: 20px;
 `

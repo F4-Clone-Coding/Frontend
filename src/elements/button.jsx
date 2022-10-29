@@ -26,7 +26,7 @@ const Btn = styled.button`
 
 export const btn1 = css`
     width: 381px;
-    background-color: #2AC1BC;
+    background-color: var(--brand-color);
     color: white;
     border: none;
     transition: all 0.2s linear;

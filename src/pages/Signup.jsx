@@ -61,7 +61,7 @@ const SignupBox = styled.div`
     .back{
         display:flex;
         cursor: pointer;
-        font-size: 28px;
+        font-size: 24px;
     }
     
 `
