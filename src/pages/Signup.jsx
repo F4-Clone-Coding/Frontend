@@ -8,9 +8,7 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { api } from '../shared/apis';
 
-
 const Signup = () => {
-
     const {
         register,
         handleSubmit,
@@ -35,7 +33,6 @@ const Signup = () => {
             console.log("회원가입 에러", error)
         }
     }
-
 
   const password = watch('password');
 
@@ -76,8 +73,6 @@ const Signup = () => {
                             })}
                         />
                         {errors.email && errors.email.type === "pattern" && <span className='p2'> 이메일 형식이 아닙니다. </span>}
-
-
                         <input type="password" placeholder='비밀번호 재확인*'
                             {...register("confirm", {
                                 // required: "비밀번호를 확인 해주세요!",
@@ -102,7 +97,6 @@ const Signup = () => {
                                     // value:  ,
                                     // message: "영문, 숫자를 혼용하여 입력해주세요!"
                                 },
-
                             })
                             } />
                         {errors.nickname && errors?.nickname.type === "confirmPw" && <p className='p2'> {errors.nickname?.message}</p>}
