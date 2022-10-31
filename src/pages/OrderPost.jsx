@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Layout from "../components/Layout";
 import Header from "../components/Header";
@@ -11,8 +12,10 @@ import styled from "styled-components";
 import { FaPhoneAlt, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
 
 const OrderPost = () => {
+  const nav = useNavigate();
   const dispatch = useDispatch();
-  const storeId = useParams();
+  const { menus } = useSelector((state) => state.menus);
+  const { storeId } = useParams();
   const [tabId, setTabId] = useState(0);
 
 
@@ -35,6 +38,11 @@ const OrderPost = () => {
     setTabId(tabNum);
   };
   console.log(tabId);
+
+  const orderHandler = () => {
+    // dispatch()
+    // nav(`/order/${orderId}`)
+  }
 
   useEffect(() => {
     dispatch(
@@ -76,20 +84,12 @@ const OrderPost = () => {
         <StTab onClick={() => tabHandlser(2)}>리뷰</StTab>
       </StTabWrap>
       <MenuWrap>
-        {/* menus.filter((menu) => menu.counter > 0).map(menu =>{" "}
-        <StoreCard key={store.storeId} store={store} /> */}
-        <MenuCard />
-        <MenuCard />
-        <MenuCard />
-        <MenuCard />
-        <MenuCard />
-        <MenuCard />
-        <StTotalPriceBox>
-          <p>총 주문금액: 100,000원</p>
-        </StTotalPriceBox>
+        <MenuCard menus={menus} />
       </MenuWrap>
       <StBtnBox>
-        <Button btn="btn1">주문하러 가기</Button>
+        <Button onClick={orderHandler} btn="btn1">
+          주문하러 가기
+        </Button>
       </StBtnBox>
     </Layout>
   );
@@ -178,15 +178,6 @@ const MenuWrap = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
-
-const StTotalPriceBox = styled.div`
-  height: 50px;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 8px;
 `;
 
 const StBtnBox = styled.div`
