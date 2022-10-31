@@ -8,7 +8,7 @@ const Layout = (props) => {
 export default Layout;
 
 const StLayout = styled.div`
-    max-width :390px;
+    max-width :600px;
     max-height:844px;
     width:390px;
     height:844px;
