@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { getAllStore, getStore } from '../redux/modules/storeSlice';
+import { getAllStore } from '../redux/modules/storeSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 import StoreCard from './StoreCard';
