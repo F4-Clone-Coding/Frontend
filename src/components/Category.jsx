@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import { useState } from 'react'
 import styled from 'styled-components';
@@ -10,8 +10,12 @@ import Button from '../elements/button';
 
 
 const Category = () => {
+    const scrollRef = useRef(null)
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    // const [isDrag, setIsDrag] = useState(false)
+    // const [startX, set]
 
     const { stores } = useSelector((state) => state.stores)
     console.log("잘 드렁왔니?", stores)
@@ -41,6 +45,7 @@ const Category = () => {
                 <Button btn="btn3" onClick={() => handleChange(4)}>양식</Button>
                 <Button btn="btn3" onClick={() => handleChange(5)}>패스트푸드</Button>
                 <Button btn="btn3" onClick={() => handleChange(6)}>카페</Button>
+
             </CategoryBox>
 
             <CardWrap>
@@ -65,7 +70,7 @@ const CategoryBox = styled.div`
             width: 390px;
             height: 50px;
             overflow-y: hidden;
-            overflow-x: auto;
+            overflow-x: scroll;
             &::-webkit-scrollbar {
             display: none;
             }
