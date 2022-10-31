@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import Layout from "../components/Layout";
 import Header from "../components/Header";
 import Button from "../elements/button";
-import Menu from "../components/MenuCard";
+import MenuCard from "../components/MenuCard";
 import { getAllMenu } from "../redux/modules/menuSlice";
 
 import styled from "styled-components";
@@ -56,20 +56,18 @@ const OrderPost = () => {
         </StInfoWrap>
       </StWrap>
       <StTabWrap>
-        <StTab onClick={() => tabHandlser(1)}>
-          <p>메뉴</p>
-        </StTab>
-        <StTab onClick={() => tabHandlser(2)}>
-          <p>리뷰</p>
-        </StTab>
+        <StTab onClick={() => tabHandlser(1)}>메뉴</StTab>
+        <StTab onClick={() => tabHandlser(2)}>리뷰</StTab>
       </StTabWrap>
       <MenuWrap>
-        <Menu />
-        <Menu />
-        <Menu />
-        <Menu />
-        <Menu />
-        <Menu />
+        {/* menus.filter((menu) => menu.counter > 0).map(menu =>{" "}
+        <StoreCard key={store.storeId} store={store} /> */}
+        <MenuCard />
+        <MenuCard />
+        <MenuCard />
+        <MenuCard />
+        <MenuCard />
+        <MenuCard />
         <StTotalPriceBox>
           <p>총 주문금액: 100,000원</p>
         </StTotalPriceBox>
