@@ -4,14 +4,11 @@ import styled from 'styled-components'
 import Button from '../elements/button'
 import { IoArrowBackOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom'
-import Input from '../elements/input'
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import Swal from 'sweetalert2';
-
+import { api } from '../shared/apis';
 
 const Signup = () => {
-
     const {
         register,
         handleSubmit,
@@ -20,10 +17,8 @@ const Signup = () => {
     } = useForm({ mode: "onChange" });
 
     const onSubmit = async (payload) => {
-        console.log("함수실행!", payload)
-
         try {
-            const res = await axios.post("http://localhost:3001/user", payload)
+            const res = await api.post("/user/signup", payload)
             if (res.status === 200) {
                 Swal.fire({
                     position: 'top-end',
@@ -39,14 +34,9 @@ const Signup = () => {
         }
     }
 
+  const password = watch('password');
 
-    const password = watch('password')
-    console.log("pw", password)
-    // const confirm = watch('confirm')
-    // const email = watch('email')
-    // const nickname = watch('nickname')
-
-    const navigate = useNavigate()
+  const navigate = useNavigate();
     return (
         <Layout>
             <SignupBox>
@@ -82,8 +72,7 @@ const Signup = () => {
                                 },
                             })}
                         />
-                        {errors.email && errors.email.type === "pattern" && <span className='p2'> 비밀번호 형식이 아닙니다. </span>}
-
+                        {errors.email && errors.email.type === "pattern" && <span className='p2'> 이메일 형식이 아닙니다. </span>}
                         <input type="password" placeholder='비밀번호 재확인*'
                             {...register("confirm", {
                                 // required: "비밀번호를 확인 해주세요!",
@@ -108,7 +97,6 @@ const Signup = () => {
                                     // value:  ,
                                     // message: "영문, 숫자를 혼용하여 입력해주세요!"
                                 },
-
                             })
                             } />
                         {errors.nickname && errors?.nickname.type === "confirmPw" && <p className='p2'> {errors.nickname?.message}</p>}

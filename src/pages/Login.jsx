@@ -2,54 +2,53 @@ import React from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 import Button from "../elements/button";
-import Input from "../elements/input";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Swal from "sweetalert2";
+import { api } from '../shared/apis';
 import { setAccessToken, setRefreshToken } from "../shared/cookie";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
     const navigate = useNavigate()
-    const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm()
 
-    const onClickLogin = async (data) => {
-
-        const info = {
-            email: data.email,
-            password: data.password,
-            location: navigator.geolocation.getCurrentPosition(({ coords }) =>
-                `${coords.latitude}, ${coords.longitude}`
-            )
+  const onClickLogin = (data) => {
+    navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+      const location = `${coords.latitude}, ${coords.longitude}`
+      const info = {
+        email: data.email,
+        password: data.password,
+        location,
+      }
+      console.log('info', info)
+      try {
+        const response = await api.post("/user/login", info);
+        console.log("acc", response.data)
+        if (!response.data?.message) {
+          Swal.fire({
+            icon: "error",
+            title: "다시 확인해주세요!",
+            text: "아이디 또는 비밀번호가 틀렸습니다.",
+          });
+          throw new Error("에러메세지")
         }
-        try {
-            const response = await axios.post('/login', info) //{ withCredentials: true }
-            console.log("acc", response.data)
-            if (response.data?.loginUserResult === undefined) {
-                Swal.fire({
-                    icon: "error",
-                    title: "다시 확인해주세요!",
-                    text: "아이디 또는 비밀번호가 틀렸습니다.",
-                });
-                throw new Error("에러메세지")
-            }
-            setAccessToken(response.data.loginUserResult.authorization);
-            setRefreshToken(response.data.loginUserResult.refreshToken); //["RefreshToken"]
-            if (response.data.message === "로그인을 성공하셨습니다!") {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: '로그인에 성공하였습니다!',
-                    showConfirmButton: false,
-                    timer: 1000
-                })
-                navigate("/");
-            }
-        } catch (error) {
-            console.log(error)
+        if (response.data.message) {
+          setAccessToken(response.data.accessToken)
+          setRefreshToken(response.data.refreshToken)
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "로그인에 성공하였습니다!",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+          navigate("/");
         }
-
+      } catch (error) {
+        console.log(error)
+      }
+    })
     }
 
 

@@ -13,7 +13,7 @@ const MenuCard = ({ menus }) => {
   return (
     <>
       <StMenuContainer>
-        {menus?.map((menu) => (
+        {menus.Menus?.map((menu) => (
           <MenuItem
             key={menu.menuId}
             menu={menu}
