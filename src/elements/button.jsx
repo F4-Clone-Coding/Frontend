@@ -2,22 +2,22 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 export default function Button({ children, ...restProps }) {
-    return <Btn {...restProps}>{children}</Btn>;
+  return <Btn {...restProps}>{children}</Btn>;
 }
 
 const Btn = styled.button`
   ${({ btn }) => {
-        switch (btn) {
-            case "btn1":
-                return btn1;
-            case "btn2":
-                return btn2;
-            case "btn3":
-                return btn3;
-            default:
-                break;
-        }
-    }}
+    switch (btn) {
+      case "btn1":
+        return btn1;
+      case "btn2":
+        return btn2;
+      case "btn3":
+        return btn3;
+      default:
+        break;
+    }
+  }}
 `;
 
 export const btn1 = css`
@@ -60,14 +60,14 @@ export const btn2 = css`
 `;
 export const btn3 = css`
     font-size: 17px;
-    width: 85px;
+    width: 90px;
     height: 50px;
     background-color: white;
     border: none;
   
     &:focus {
         font-size: 18px;
-        width: 90px;
+        width: 95px;
         height: 50px;
         border: none;
         border-bottom: 4.5px solid var(--brand-color)
