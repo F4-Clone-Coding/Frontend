@@ -25,11 +25,11 @@ export const inp1 = css`
         width: 361px;
         height: 61px;
         font-size: 16px;
-        border: 1px solid #999;
+        border: 2px solid #999;
         border-radius: 6px;
         transition: all 0.3s linear;
     &:focus {
-        border:1px solid #2AC1BC;
+        border:2px solid #2AC1BC;
         outline: none;
     }
 `;
@@ -38,22 +38,23 @@ export const inp2 = css`
         height: 61px;
         font-size: 16px;
         border:none;
-        border-bottom: 1px solid #999;
+        border-bottom: 2px solid #999;
         
         transition: all 0.2s linear;
     &:focus {
-        border-bottom: 1px solid #2AC1BC;
+        border-bottom: 2px solid var(--brand-color);
         outline: none
     }
 `;
 export const inp3 = css`
-   width: 7rem;
-    height: 4rem;
-    background-color: #293991;
-    color: #ffffff;
-    border: 2px solid white;
-    border-radius: 5px;
-    &:hover{
-        background-color: #1b2661;
+        width: 266px;
+        height: 33px;
+        font-size: 16px;
+        border:3px solid #F3F3F3;
+        
+        transition: all 0.2s linear;
+    &:focus {
+        border: 3px solid var(--brand-color);
+        outline: none
     }
 `;
