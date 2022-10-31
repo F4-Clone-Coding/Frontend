@@ -10,10 +10,10 @@ const initialState = {
 // ----- 해당 스토어 정보 get -----
 export const getAllMenu = createAsyncThunk(
   "menus/getAllMenu",
-  async (storeId, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const res = await axios.get(`http://localhost:3001/store/${storeId}`);
-      return thunkAPI.fulfillWithValue(res.data.data);
+      const res = await axios.get(`http://localhost:3001/menu`);
+      return thunkAPI.fulfillWithValue(res.data);
     } catch (err) {
       return thunkAPI.rejectWithValue(err);
     }
