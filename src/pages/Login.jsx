@@ -17,10 +17,14 @@ const Login = () => {
                     <Input inp='inp2' type="password" placeholder='비밀번호' />
                     <Button btn="btn1">로그인</Button>
                 </FormBox>
-                <div>
-                    <span>아이디 찾기</span>&nbsp;&nbsp; | &nbsp;&nbsp;<span>비밀번호 찾기</span>
-                    <p>혹시, 배달만민족이 처음이신가요? <span style={{ color: "#2AC1BC", cursor: "pointer" }} onClick={() => navigate('/user/signup')}>회원가입</span></p>
-                </div>
+                <TextBox>
+                    <div>
+                        <span>아이디 찾기</span>&nbsp;&nbsp; | &nbsp;&nbsp;<span>비밀번호 찾기</span>
+                    </div>
+                    <div>
+                        <p>혹시, 배달만민족이 처음이신가요? <span style={{ color: "#2AC1BC" }} onClick={() => navigate('/user/signup')}>회원가입</span></p>
+                    </div>
+                </TextBox>
             </LoginWrap>
         </Layout >
     )
@@ -36,6 +40,9 @@ const LoginWrap = styled.div`
         display:flex;
         cursor: pointer;
         font-size: 28px;
+        &:hover{
+                color: var(--brand-color)
+            }
     }
 `
 const FormBox = styled.form`
@@ -45,4 +52,15 @@ const FormBox = styled.form`
     align-content: center;
     gap:30px;
     margin-top: 100px;;
+    
+`
+
+const TextBox = styled.div`
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    span{
+        cursor: pointer;
+    }
 `
