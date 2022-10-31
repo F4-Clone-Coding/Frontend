@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Layout from "../components/Layout";
@@ -12,11 +12,16 @@ import styled from "styled-components";
 import { FaPhoneAlt, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
 
 const OrderPost = () => {
-  const nav = useNavigate();
+  // const nav = useNavigate();
   const dispatch = useDispatch();
-  const { menus } = useSelector((state) => state.menus);
+  const menus = useSelector((state) => state.menus);
   const { storeId } = useParams();
   const [tabId, setTabId] = useState(0);
+  const location = useLocation();
+
+  const storeName = location.state.storeName;
+  console.log("storeName", storeName);
+  console.log("menus", menus);
 
   const tabHandlser = (tabNum) => {
     setTabId(tabNum);
@@ -26,7 +31,7 @@ const OrderPost = () => {
   const orderHandler = () => {
     // dispatch()
     // nav(`/order/${orderId}`)
-  }
+  };
 
   useEffect(() => {
     dispatch(
@@ -42,7 +47,7 @@ const OrderPost = () => {
       <StWrap>
         <StImgBox />
         <StInfoWrap>
-          <p>CafeTeam4</p>
+          <p>{storeName}</p>
           <p>별점: ⭐⭐⭐⭐⭐</p>
           <DescWrap1>
             <p>최근리뷰 100개</p>

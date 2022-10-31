@@ -4,21 +4,108 @@ import styled from 'styled-components'
 import Button from '../elements/button'
 import { IoArrowBackOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom'
-import Input from '../elements/input'
+import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
+import { api } from '../shared/apis';
+
 
 const Signup = () => {
-    const navigate = useNavigate()
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm({ mode: "onChange" });
+
+    const onSubmit = async (payload) => {
+        try {
+            const res = await api.post("/user/signup", payload)
+            if (res.status === 200) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '회원가입을 축하합니다!',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                navigate("/");
+            }
+        } catch (error) {
+            console.log("회원가입 에러", error)
+        }
+    }
+
+
+  const password = watch('password');
+
+  const navigate = useNavigate();
     return (
         <Layout>
             <SignupBox>
                 <IoArrowBackOutline className='back' onClick={() => navigate('/user/login')} />
                 <Title>회원가입</Title>
                 <FormWrap>
-                    <FormBox >
-                        <Input inp="inp1" type="email" placeholder='이메일*' />
-                        <Input inp="inp1" type="password" placeholder='비밀번호*(영문+숫자,8~20자)' />
-                        <Input inp="inp1" type="password" placeholder='비밀번호 재확인*)' />
-                        <Input inp="inp1" type="text" placeholder='닉네임*' />
+                    <FormBox onSubmit={handleSubmit(onSubmit)}>
+                        <p>이메일</p>
+
+                        <input placeholder='이메일*'
+                            {...register("email",
+                                {
+                                    required: "Email is required", pattern: /^[A-Za-z0-9]([-_\.]?[0-9a-zA-z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-z])*\.[a-zA-z]{2,3}$/,
+                                }
+                            )}
+                        />
+                        {errors.email && errors.email.type === "pattern" && <p className='p2'> 이메일 형식이 아닙니다. </p>}
+
+                        <input type="password" placeholder='비밀번호*(영문+숫자,8~20자)'
+                            {...register("password", {
+                                // required: "비밀번호를 입력해주세요!",
+                                minLength: {
+                                    value: 8,
+                                    message: "최소 8자 이상의 비밀번호를 입력해주세요!"
+                                },
+                                maxLength: {
+                                    value: 20,
+                                    message: "20자 이하의 비밀번호만 사용가능합니다!"
+                                },
+                                pattern: {
+                                    value: /^(?=[a-zA-Z]*\d)(?=\d*[a-zA-Z])\w{8,20}$/,
+                                    message: "영문, 숫자를 혼용하여 입력해주세요!"
+                                },
+                            })}
+                        />
+                        {errors.email && errors.email.type === "pattern" && <span className='p2'> 이메일 형식이 아닙니다. </span>}
+
+
+                        <input type="password" placeholder='비밀번호 재확인*'
+                            {...register("confirm", {
+                                // required: "비밀번호를 확인 해주세요!",
+                                validate: {
+                                    confirmPw: (v) => { return password === v || "비밀번호가 일치하지 않습니다!" }
+                                }
+                            })}
+                        />
+                        {errors.confirm && errors?.confirm.type === "confirmPw" && <p className='p2'> {errors.confirm?.message}</p>}
+                        <input placeholder='닉네임*'
+                            {...register("nickname", {
+                                // required: "닉네임을 입력해주세요!",
+                                minLength: {
+                                    value: 3,
+                                    message: "최소 3자 이상의 닉네임을 입력해주세요!",
+                                },
+                                maxLength: {
+                                    value: 6,
+                                    message: "6자 이하의 닉네임만 사용가능합니다!",
+                                },
+                                pattern: {
+                                    // value:  ,
+                                    // message: "영문, 숫자를 혼용하여 입력해주세요!"
+                                },
+
+                            })
+                            } />
+                        {errors.nickname && errors?.nickname.type === "confirmPw" && <p className='p2'> {errors.nickname?.message}</p>}
                         <Button btn='btn1' >회원가입</Button>
                     </FormBox>
                 </FormWrap>
@@ -37,7 +124,9 @@ const FormBox = styled.form`
     align-items: center;
     border:none;
     gap:20px;
-    
+    span{
+        color: red;
+    }
 `
 
 const FormWrap = styled.div`

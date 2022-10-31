@@ -12,13 +12,57 @@ import Button from '../elements/button';
 const Category = () => {
     const scrollRef = useRef(null)
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
     // const [isDrag, setIsDrag] = useState(false)
-    // const [startX, set]
+    // const [startX, setStartX] = useState();
 
-    const { stores } = useSelector((state) => state.stores)
-    console.log("잘 드렁왔니?", stores)
+    // const onDragStart = (e) => {
+    //     e.preventDefault();
+    //     setIsDrag(e.offsetX + scrollRef.current.scrollLeft)
+    // }
+    // const onDragEnd = () => {
+    //     setIsDrag(false)
+    // };
+    // const onDragMove = (e) => {
+    //     if (isDrag) {
+    //         const { scrollLeft, clientWidth, scrollWidth } = scrollRef.current;
+    //         scrollRef.current.scrollLeft = startX - e.offsetX;
+
+    //         if (scrollLeft === 0) {
+    //             setStartX(e.offsetX)
+    //         } else if (scrollWidth <= clientWidth + scrollLeft) {
+    //             setStartX(e.offsetX + scrollLeft)
+    //         }
+    //     }
+    // }
+
+    // //쓰로틀 구현
+    // const throttle = (func, ms) => {
+    //     let throttled = false;
+    //     return (...args) => {
+    //         if (!throttled) {
+    //             throttled = true;
+    //             setTimeout(() => {
+    //                 func(...args)
+    //                 throttled = false
+    //             }, ms)
+    //         }
+    //     }
+    // }
+    // const delay = 100;
+    // const onThrottleDragMove = throttle(onDragMove, delay)
+
+
+  const { stores } = useSelector((state) => state.stores)
+  
+  // for (const store of stores.data) {
+  //   console.log('여기',store)
+  // }
+
+  // console.log('stores', stores)
+  // console.log('00',stores.data);
+  
 
 
 
@@ -35,29 +79,50 @@ const Category = () => {
 
 
     return (
-        <>
+      <>
+        {/* <CategoryBox
+                onMouseDown={onDragStart}
+                onMouseMove={isDrag ? onThrottleDragMove : null}
+                onMouseUp={onDragEnd}
+                onMouseLeave={onDragEnd}
+                ref={scrollRef}> */}
+        <CategoryBox>
+          <Button btn="btn3" onClick={() => handleChange(0)}>
+            전체
+          </Button>
+          <Button btn="btn3" onClick={() => handleChange(1)}>
+            한식
+          </Button>
+          <Button btn="btn3" onClick={() => handleChange(2)}>
+            일식
+          </Button>
+          <Button btn="btn3" onClick={() => handleChange(3)}>
+            중식
+          </Button>
+          <Button btn="btn3" onClick={() => handleChange(4)}>
+            양식
+          </Button>
+          <Button btn="btn3" onClick={() => handleChange(5)}>
+            패스트푸드
+          </Button>
+          <Button btn="btn3" onClick={() => handleChange(6)}>
+            카페
+          </Button>
+        </CategoryBox>
 
-            <CategoryBox>
-                <Button btn="btn3" onClick={() => handleChange(0)}>전체</Button>
-                <Button btn="btn3" onClick={() => handleChange(1)}>한식</Button>
-                <Button btn="btn3" onClick={() => handleChange(2)}>일식</Button>
-                <Button btn="btn3" onClick={() => handleChange(3)}>중식</Button>
-                <Button btn="btn3" onClick={() => handleChange(4)}>양식</Button>
-                <Button btn="btn3" onClick={() => handleChange(5)}>패스트푸드</Button>
-                <Button btn="btn3" onClick={() => handleChange(6)}>카페</Button>
-
-            </CategoryBox>
-
-            <CardWrap>
-                {categoryId === 0 ? stores.map(store => <StoreCard key={store.storeId} store={store} />)
-                    :
-                    stores.filter((store) => store.storeCategoryId === categoryId).map(store => <StoreCard key={store.storeId} store={store} />)
-                }
-            </CardWrap>
-        </>
-
-
-    )
+        <CardWrap>
+          {categoryId === 0
+            ? stores.data?.map((store) => (
+                <StoreCard key={store.storeId} store={store} />
+              ))
+            : stores.data
+                ?.filter((store) => store.categoryId === categoryId)
+                .map((store) => (
+                  <StoreCard key={store.storeId} store={store} />
+                ))}
+        </CardWrap>
+      </>
+    );
 }
 
 
@@ -67,7 +132,7 @@ const CategoryBox = styled.div`
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            width: 390px;
+            width: 100%;
             height: 50px;
             overflow-y: hidden;
             overflow-x: scroll;
