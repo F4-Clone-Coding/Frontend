@@ -15,6 +15,22 @@ const OrderPost = () => {
   const storeId = useParams();
   const [tabId, setTabId] = useState(0);
 
+
+  // const initialstate = {
+  //   meneId: menu.meneId,
+  //   count: count,
+  //   price: menu.price
+  // }
+
+  // const [count, setCount] = useState(0)
+  // const [order, setOrder] = useState(initialstate)
+
+
+
+  // const onChange = () => {
+  //   setCount(count)
+  // }
+
   const tabHandlser = (tabNum) => {
     setTabId(tabNum);
   };

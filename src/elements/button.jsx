@@ -60,14 +60,14 @@ export const btn2 = css`
 `;
 export const btn3 = css`
     font-size: 17px;
-    width: 90px;
+    width: 97px;
     height: 50px;
     background-color: white;
     border: none;
   
     &:focus {
         font-size: 18px;
-        width: 95px;
+        width: 110px;
         height: 50px;
         border: none;
         border-bottom: 4.5px solid var(--brand-color)

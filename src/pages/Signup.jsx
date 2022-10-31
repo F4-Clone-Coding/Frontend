@@ -82,8 +82,7 @@ const Signup = () => {
                                 },
                             })}
                         />
-                        {errors.email && errors.email.type === "pattern" && <span className='p2'> 이메일 형식이 아닙니다. </span>}
-
+                        {errors.email && errors.email.type === "pattern" && <span className='p2'> 비밀번호 형식이 아닙니다. </span>}
 
                         <input type="password" placeholder='비밀번호 재확인*'
                             {...register("confirm", {
