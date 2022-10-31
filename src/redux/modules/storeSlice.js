@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { api } from '../../shared/apis';
 
 // ----- InitialState -----
 const initialState = {
@@ -12,7 +12,7 @@ export const getAllStore = createAsyncThunk(
   "stores/getAllStore",
   async (_, thunkAPI) => {
     try {
-      const res = await axios.get("http://localhost:3001/store");
+      const res = await api.get("/");
       console.log("res", res);
       return thunkAPI.fulfillWithValue(res.data);
     } catch (err) {
@@ -26,7 +26,7 @@ export const getStore = createAsyncThunk(
   "stores/getStore",
   async (categoryId, thunkAPI) => {
     try {
-      const res = await axios.get(`http://localhost:3001/store/${categoryId}`);
+      const res = await api.get(`/${categoryId}`);
       return thunkAPI.fulfillWithValue(res.data.data);
     } catch (err) {
       return thunkAPI.rejectWithValue(err);

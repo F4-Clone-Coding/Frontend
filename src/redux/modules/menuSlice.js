@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { api } from "../../shared/apis";
 
 // ----- InitialState -----
 const initialState = {
@@ -10,15 +10,24 @@ const initialState = {
 // ----- 해당 스토어 정보 get -----
 export const getAllMenu = createAsyncThunk(
   "menus/getAllMenu",
-  async (storeId, thunkAPI) => {
+  async (payload, thunkAPI) => {
     try {
-      const res = await axios.get(`http://localhost:3001/store/${storeId}`);
-      return thunkAPI.fulfillWithValue(res.data.data);
+      const res = await api.get(`/store/${payload}`);
+      return thunkAPI.fulfillWithValue(res.data);
     } catch (err) {
       return thunkAPI.rejectWithValue(err);
     }
   }
 );
+
+// export const orderMenu = createAsyncThunk(
+//   "menus/orederMenu",
+//   async (payload, thunkAPI) => {
+//     try {
+//       const res = await api.post(`/store/${payload}`)
+//     }
+//   }
+// )
 
 // ----- slice -----
 const menuSlice = createSlice({

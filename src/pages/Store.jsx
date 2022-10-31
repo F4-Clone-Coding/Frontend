@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom'
 import Category from '../components/Category';
 
 const Store = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
+
     return (
         <Layout>
             <StoreWrap>

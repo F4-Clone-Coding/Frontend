@@ -1,23 +1,24 @@
 import axios from "axios";
-import { Cookies } from "react-cookie";
 import { getCookieToken, getRefreshToken } from "./cookie";
 
-const baseURL = process.env.REACT_APP_API_KEY;
+const baseURL = process.env.REACT_APP_API_URL;
 
 const myToken = getCookieToken();
-
-const cookie = new Cookies();
+const refToken = getRefreshToken();
+// const cookie = new Cookies();
 
 export const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL,
 });
 
 const instance = axios.create({
   baseURL,
   headers: {
-    AcceptToken: myToken,
+    // "content-type": "application/json; charset=utf-8",
+    "Access-Control-Request-Headers": "Set-Cookie",
+    Authorization: `Bearer ${myToken}`,
+    refreshToken: `Bearer ${refToken}`,
     "Cache-Control": "no-cache",
-    "refresh-token": getRefreshToken(),
   },
 });
 
@@ -43,7 +44,7 @@ instance.interceptors.response.use(
   }
 );
 
-export const anyApis = {
-  //좋아요기능
-  liked: (data, info) => instance.post(`/post/like/${data}`, info),
-};
+// export const anyApis = {
+//   //좋아요기능
+//   liked: (data, info) => instance.post(`/post/like/${data}`, info),
+// };

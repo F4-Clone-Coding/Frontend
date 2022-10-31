@@ -6,7 +6,12 @@ import { useNavigate } from 'react-router-dom'
 import Input from '../elements/input';
 import Button from '../elements/button';
 const MyPage = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
+  // logoutHandler에 refreshToken 넣어서 보내기
+  const logoutHandler = () => {
+    
+  }
+
     return (
         <>
             <Layout>
@@ -38,7 +43,7 @@ const MyPage = () => {
                     <div>주문 카드 들어감</div>
                 </OrderList>
                 <LogoutBox>
-                    <span onClick={() => navigate('/')}>로그아웃</span>
+                    <span onClick={logoutHandler}>로그아웃</span>
                 </LogoutBox>
             </Layout>
         </>
