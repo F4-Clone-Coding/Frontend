@@ -5,7 +5,7 @@ const cookies = new Cookies();
 export const setAccessToken = (accessToken) => {
   // const today = new Date();
   // const expireDate = today.setDate(today.getDate() + 3);
-  const expireDate = new Date(new Date().getTime() + 1000 * 60 * 10);
+  const expireDate = new Date(new Date().getTime() + 1000 * 60 * 60 * 6);
   return cookies.set("accessToken", accessToken, {
     samSite: "none",
     path: "/",

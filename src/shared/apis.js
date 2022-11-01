@@ -15,7 +15,6 @@ const instance = axios.create({
   baseURL,
   headers: {
     // "content-type": "application/json; charset=utf-8",
-    "Access-Control-Request-Headers": "Set-Cookie",
     Authorization: `Bearer ${myToken}`,
     refreshToken: `Bearer ${refToken}`,
     "Cache-Control": "no-cache",

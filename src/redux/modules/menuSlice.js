@@ -10,24 +10,16 @@ const initialState = {
 // ----- 해당 스토어 정보 get -----
 export const getAllMenu = createAsyncThunk(
   "menus/getAllMenu",
-  async (payload, thunkAPI) => {
+  async (storeId, thunkAPI) => {
+    console.log("storeId", storeId);
     try {
-      const res = await api.get(`/store/${payload}`);
-      return thunkAPI.fulfillWithValue(res.data);
+      const res = await api.get(`/store/${storeId}`);
+      return thunkAPI.fulfillWithValue(res.data.data[0].Menus);
     } catch (err) {
       return thunkAPI.rejectWithValue(err);
     }
   }
 );
-
-// export const orderMenu = createAsyncThunk(
-//   "menus/orederMenu",
-//   async (payload, thunkAPI) => {
-//     try {
-//       const res = await api.post(`/store/${payload}`)
-//     }
-//   }
-// )
 
 // ----- slice -----
 const menuSlice = createSlice({
@@ -41,8 +33,8 @@ const menuSlice = createSlice({
   extraReducers: (builder) => {
     /* ----------- getAllMenu(해당 스토어의 메뉴 등 정보 조회) ---------------- */
     builder.addCase(getAllMenu.fulfilled, (state, action) => {
-      state.menus = action.payload;
       state.isLoading = false;
+      state.menus = action.payload;
     });
     builder.addCase(getAllMenu.rejected, (state) => {
       state.isLoading = false;
