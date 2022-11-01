@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Layout from "../components/Layout";
 import Header from "../components/Header";
-import Button from "../elements/button";
 import MenuCard from "../components/MenuCard";
 import { getAllMenu } from "../redux/modules/menuSlice";
 
@@ -12,48 +11,23 @@ import styled from "styled-components";
 import { FaPhoneAlt, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
 
 const OrderPost = () => {
-  // const nav = useNavigate();
   const dispatch = useDispatch();
-  const menus = useSelector((state) => state.menus);
   const { storeId } = useParams();
+  const { menus } = useSelector((state) => state.menus);
   const [tabId, setTabId] = useState(0);
   const location = useLocation();
-
   const storeName = location.state.storeName;
-  console.log("storeName", storeName);
-  console.log("menus", menus);
-
-
-  // const initialstate = {
-  //   meneId: menu.meneId,
-  //   count: count,
-  //   price: menu.price
-  // }
-
-  // const [count, setCount] = useState(0)
-  // const [order, setOrder] = useState(initialstate)
-
-
-
-  // const onChange = () => {
-  //   setCount(count)
-  // }
 
   const tabHandlser = (tabNum) => {
     setTabId(tabNum);
   };
   console.log(tabId);
 
-  const orderHandler = () => {
-    // dispatch()
-    // nav(`/order/${orderId}`)
-  };
-
   useEffect(() => {
     dispatch(
-      getAllMenu({
+      getAllMenu(
         storeId,
-      })
+      )
     );
   }, [dispatch, storeId]);
 
@@ -89,13 +63,8 @@ const OrderPost = () => {
         <StTab onClick={() => tabHandlser(2)}>리뷰</StTab>
       </StTabWrap>
       <MenuWrap>
-        <MenuCard menus={menus} />
+        <MenuCard menus={menus} storeId={storeId} />
       </MenuWrap>
-      <StBtnBox>
-        <Button onClick={orderHandler} btn="btn1">
-          주문하러 가기
-        </Button>
-      </StBtnBox>
     </Layout>
   );
 };
@@ -183,11 +152,6 @@ const MenuWrap = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
-
-const StBtnBox = styled.div`
-  display: flex;
-  justify-content: center;
 `;
 
 // ----- 주문하기 -----

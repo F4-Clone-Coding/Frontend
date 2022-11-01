@@ -22,17 +22,17 @@ export const getAllStore = createAsyncThunk(
 );
 
 // ----- 해당 카테고리의 스토어 get -----
-export const getStore = createAsyncThunk(
-  "stores/getStore",
-  async (categoryId, thunkAPI) => {
-    try {
-      const res = await api.get(`/${categoryId}`);
-      return thunkAPI.fulfillWithValue(res.data.data);
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err);
-    }
-  }
-);
+// export const getStore = createAsyncThunk(
+//   "stores/getStore",
+//   async (categoryId, thunkAPI) => {
+//     try {
+//       const res = await api.get(`/${categoryId}`);
+//       return thunkAPI.fulfillWithValue(res.data.data);
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err);
+//     }
+//   }
+// );
 
 // ----- slice -----
 const storeSlice = createSlice({
@@ -54,15 +54,15 @@ const storeSlice = createSlice({
     });
 
     /* ----------- getStore(해당 카테고리의 스토어 목록 get) ---------------- */
-    builder.addCase(getStore.fulfilled, (state, action) => {
-      state.stores = state.stores.filter(
-        (store) => store.categoryId === action.payload
-      );
-      state.isLoading = false;
-    });
-    builder.addCase(getStore.rejected, (state) => {
-      state.isLoading = false;
-    });
+    // builder.addCase(getStore.fulfilled, (state, action) => {
+    //   state.stores = state.stores.filter(
+    //     (store) => store.categoryId === action.payload
+    //   );
+    //   state.isLoading = false;
+    // });
+    // builder.addCase(getStore.rejected, (state) => {
+    //   state.isLoading = false;
+    // });
   },
 });
 
