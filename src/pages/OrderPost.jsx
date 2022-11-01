@@ -5,8 +5,8 @@ import { useDispatch } from "react-redux";
 import Layout from "../components/Layout";
 import Header from "../components/Header";
 import MenuCard from "../components/MenuCard";
+import ReviewCard from '../components/ReviewCard';
 import { getAllMenu } from "../redux/modules/menuSlice";
-
 import styled from "styled-components";
 import { FaPhoneAlt, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
 
@@ -62,9 +62,15 @@ const OrderPost = () => {
         <StTab onClick={() => tabHandlser(1)}>메뉴</StTab>
         <StTab onClick={() => tabHandlser(2)}>리뷰</StTab>
       </StTabWrap>
-      <MenuWrap>
-        <MenuCard menus={menus} storeId={storeId} />
-      </MenuWrap>
+      {tabId !== 2 ? (
+        <StScrollWrap>
+          <MenuCard menus={menus} storeId={storeId} />
+        </StScrollWrap>
+      ) : (
+        <StScrollWrap>
+          <ReviewCard>리뷰 부분</ReviewCard>
+        </StScrollWrap>
+      )}
     </Layout>
   );
 };
@@ -78,7 +84,6 @@ const StWrap = styled.div`
 `;
 
 const StImgBox = styled.div`
-  background: black;
   width: 100%;
   height: 300px;
   background-image: url("https://cdn.traveltimes.co.kr/news/photo/202109/113022_11185_1829.jpg");
@@ -141,7 +146,7 @@ const StTab = styled.button`
   }
 `;
 
-const MenuWrap = styled.div`
+const StScrollWrap = styled.div`
   width: 100%;
   max-height: 310px;
   flex-flow: column;

@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import Header from "../components/Header";
 import Button from "../elements/button";
@@ -7,17 +7,27 @@ import styled from "styled-components";
 import Swal from "sweetalert2";
 import { FaPhoneAlt, FaStore } from "react-icons/fa";
 import OrderCard from "../components/OrderCard";
+import { orderGet } from '../redux/modules/orderSlice';
+import { useSelector } from 'react-redux';
 
 const OrderGet = () => {
-  const navigate = useNavigate();
+  const nav = useNavigate();
+  const { orderId } = useParams();
+  console.log('orderId', orderId)
+  // const { orders } = useSelector(state => state.orders)
+  // const order = orders.filter((order) => order.orderId === orderId)
 
-  const alertInfo = () => {
+  const storeInfo = () => {
     Swal.fire({
       icon: "info",
       title: "문의사항은 연락주시기 바랍니다.",
       text: "010-1234-1234",
     });
   };
+
+  // useEffect(() => {
+  //   dispatch(orderGet(orderId))
+  // }, [dispatch])
 
   return (
     <Layout>
@@ -32,11 +42,11 @@ const OrderGet = () => {
           </p>
         </StDescWrap>
         <StbtnWrap>
-          <Button btn="btn2" onClick={alertInfo}>
+          <Button btn="btn2" onClick={storeInfo}>
             <FaPhoneAlt />
             전화
           </Button>
-          <Button btn="btn2" onClick={() => navigate("/")}>
+          <Button btn="btn2" onClick={() => nav(`/`)}>
             <FaStore style={{ margin: "3px 3px 0px" }} />
             가게 보기
           </Button>
