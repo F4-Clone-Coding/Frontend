@@ -25,18 +25,18 @@ const Signup = () => {
                     icon: 'success',
                     title: '회원가입을 축하합니다!',
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 2000
                 })
-                navigate("/");
+                navigate("/user/login");
             }
         } catch (error) {
             console.log("회원가입 에러", error)
         }
     }
 
-  const password = watch('password');
+    const password = watch('password');
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
     return (
         <Layout>
             <SignupBox>
@@ -44,18 +44,20 @@ const Signup = () => {
                 <Title>회원가입</Title>
                 <FormWrap>
                     <FormBox onSubmit={handleSubmit(onSubmit)}>
-                        <p>이메일</p>
-
-                        <input placeholder='이메일*'
+                        <Stinput placeholder='이메일*'
                             {...register("email",
                                 {
-                                    required: "Email is required", pattern: /^[A-Za-z0-9]([-_\.]?[0-9a-zA-z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-z])*\.[a-zA-z]{2,3}$/,
+                                    pattern: {
+                                        value: /^[\w][\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/,
+                                        message: '이메일 형식이 아닙니다!'
+                                    }
+
                                 }
                             )}
                         />
-                        {errors.email && errors.email.type === "pattern" && <p className='p2'> 이메일 형식이 아닙니다. </p>}
+                        {errors.email && errors.email.type === "pattern" && <span className='p2'> {errors.email?.message} </span>}
 
-                        <input type="password" placeholder='비밀번호*(영문+숫자,8~20자)'
+                        <Stinput type="password" placeholder='비밀번호*(영문+숫자,8~20자)'
                             {...register("password", {
                                 // required: "비밀번호를 입력해주세요!",
                                 minLength: {
@@ -72,8 +74,8 @@ const Signup = () => {
                                 },
                             })}
                         />
-                        {errors.email && errors.email.type === "pattern" && <span className='p2'> 이메일 형식이 아닙니다. </span>}
-                        <input type="password" placeholder='비밀번호 재확인*'
+                        {errors.password && errors.password.type === "pattern" && <span className='p2'> {errors.password?.message} </span>}
+                        <Stinput type="password" placeholder='비밀번호 재확인*'
                             {...register("confirm", {
                                 // required: "비밀번호를 확인 해주세요!",
                                 validate: {
@@ -81,8 +83,8 @@ const Signup = () => {
                                 }
                             })}
                         />
-                        {errors.confirm && errors?.confirm.type === "confirmPw" && <p className='p2'> {errors.confirm?.message}</p>}
-                        <input placeholder='닉네임*'
+                        {errors.confirm && errors?.confirm.type === "confirmPw" && <span className='p2'> {errors.confirm?.message}</span>}
+                        <Stinput placeholder='닉네임*'
                             {...register("nickname", {
                                 // required: "닉네임을 입력해주세요!",
                                 minLength: {
@@ -90,16 +92,16 @@ const Signup = () => {
                                     message: "최소 3자 이상의 닉네임을 입력해주세요!",
                                 },
                                 maxLength: {
-                                    value: 6,
-                                    message: "6자 이하의 닉네임만 사용가능합니다!",
+                                    value: 10,
+                                    message: "10자 이하의 닉네임만 사용가능합니다!",
                                 },
                                 pattern: {
-                                    // value:  ,
-                                    // message: "영문, 숫자를 혼용하여 입력해주세요!"
+                                    value: /^[가-힣0-9]{3,10}$/,
+                                    message: "한글, 숫자를 혼용하여 입력해주세요!"
                                 },
                             })
                             } />
-                        {errors.nickname && errors?.nickname.type === "confirmPw" && <p className='p2'> {errors.nickname?.message}</p>}
+                        {errors.nickname && errors?.nickname.type === "pattern" && <span className='p2'> {errors.nickname?.message}</span>}
                         <Button btn='btn1' >회원가입</Button>
                     </FormBox>
                 </FormWrap>
@@ -119,8 +121,9 @@ const FormBox = styled.form`
     border:none;
     gap:20px;
     span{
-        color: red;
+        color: var(--point-color);
     }
+
 `
 
 const FormWrap = styled.div`
@@ -149,4 +152,17 @@ const SignupBox = styled.div`
             }
     }
     
+`
+
+const Stinput = styled.input`
+        width: 361px;
+        height: 61px;
+        font-size: 16px;
+        border: 2px solid #999;
+        border-radius: 6px;
+        transition: all 0.3s linear;
+    &:focus {
+        border:2px solid #2AC1BC;
+        outline: none;
+    }
 `

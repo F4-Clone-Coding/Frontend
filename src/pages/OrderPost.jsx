@@ -13,12 +13,14 @@ import { FaPhoneAlt, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
 
 const OrderPost = () => {
   // const nav = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const menus = useSelector((state) => state.menus);
   const { storeId } = useParams();
   const [tabId, setTabId] = useState(0);
-  const location = useLocation();
 
+
+  console.log("lac", location)
   const storeName = location.state.storeName;
   console.log("storeName", storeName);
   console.log("menus", menus);
