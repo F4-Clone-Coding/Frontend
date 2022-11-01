@@ -1,61 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Layout from "../components/Layout";
 import Header from "../components/Header";
-import Button from "../elements/button";
 import MenuCard from "../components/MenuCard";
+import ReviewCard from '../components/ReviewCard';
 import { getAllMenu } from "../redux/modules/menuSlice";
-
 import styled from "styled-components";
 import { FaPhoneAlt, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
 
 const OrderPost = () => {
-  // const nav = useNavigate();
-  const location = useLocation();
   const dispatch = useDispatch();
-  const menus = useSelector((state) => state.menus);
   const { storeId } = useParams();
+  const { menus } = useSelector((state) => state.menus);
   const [tabId, setTabId] = useState(0);
-
-
-  console.log("lac", location)
+  const location = useLocation();
   const storeName = location.state.storeName;
-  console.log("storeName", storeName);
-  console.log("menus", menus);
-
-
-  // const initialstate = {
-  //   meneId: menu.meneId,
-  //   count: count,
-  //   price: menu.price
-  // }
-
-  // const [count, setCount] = useState(0)
-  // const [order, setOrder] = useState(initialstate)
-
-
-
-  // const onChange = () => {
-  //   setCount(count)
-  // }
 
   const tabHandlser = (tabNum) => {
     setTabId(tabNum);
   };
   console.log(tabId);
 
-  const orderHandler = () => {
-    // dispatch()
-    // nav(`/order/${orderId}`)
-  };
-
   useEffect(() => {
     dispatch(
-      getAllMenu({
+      getAllMenu(
         storeId,
-      })
+      )
     );
   }, [dispatch, storeId]);
 
@@ -90,14 +62,15 @@ const OrderPost = () => {
         <StTab onClick={() => tabHandlser(1)}>메뉴</StTab>
         <StTab onClick={() => tabHandlser(2)}>리뷰</StTab>
       </StTabWrap>
-      <MenuWrap>
-        <MenuCard menus={menus} />
-      </MenuWrap>
-      <StBtnBox>
-        <Button onClick={orderHandler} btn="btn1">
-          주문하러 가기
-        </Button>
-      </StBtnBox>
+      {tabId !== 2 ? (
+        <StScrollWrap>
+          <MenuCard menus={menus} storeId={storeId} />
+        </StScrollWrap>
+      ) : (
+        <StScrollWrap>
+          <ReviewCard>리뷰 부분</ReviewCard>
+        </StScrollWrap>
+      )}
     </Layout>
   );
 };
@@ -111,7 +84,6 @@ const StWrap = styled.div`
 `;
 
 const StImgBox = styled.div`
-  background: black;
   width: 100%;
   height: 300px;
   background-image: url("https://cdn.traveltimes.co.kr/news/photo/202109/113022_11185_1829.jpg");
@@ -174,7 +146,7 @@ const StTab = styled.button`
   }
 `;
 
-const MenuWrap = styled.div`
+const StScrollWrap = styled.div`
   width: 100%;
   max-height: 310px;
   flex-flow: column;
@@ -185,11 +157,6 @@ const MenuWrap = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
-
-const StBtnBox = styled.div`
-  display: flex;
-  justify-content: center;
 `;
 
 // ----- 주문하기 -----
