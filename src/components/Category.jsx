@@ -29,8 +29,14 @@ const Category = () => {
     if (target.isIntersecting) {
       setPage((prev) => prev + 1)
     }
-  }, [])
-
+  }, [])  
+  
+  const [categoryId, setCategoryId] = useState(0);
+  
+  const handleChange = (event) => {
+    setCategoryId(event);
+  };
+  
   useEffect(() => {
     const option = {
       root: null,
@@ -40,16 +46,6 @@ const Category = () => {
     const observer = new IntersectionObserver(handleObserver, option);
     if (loader.current) observer.observe(loader.current);
   }, [handleObserver]);
-
-
-  const [categoryId, setCategoryId] = useState(0);
-
-  const handleChange = (event) => {
-    setCategoryId(event);
-  };
-  // useEffect(() => {
-  //   dispatch(getAllStore())
-  // }, [dispatch])
 
   return (
     <>
