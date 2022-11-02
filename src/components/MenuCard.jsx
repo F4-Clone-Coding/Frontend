@@ -9,16 +9,12 @@ import Swal from "sweetalert2";
 const MenuCard = ({ menus, storeId }) => {
   const nav = useNavigate();
   const [menuList, setMenuList] = useState({});
-  console.log("menuList", menuList);
   const [totalPrice, setTotalPrice] = useState(0);
-  console.log("menuList", { menus: Object.values(menuList) });
   const order = { menus: Object.values(menuList), sum: totalPrice };
-  console.log("order", order);
 
   const orderHandler = async (order, storeId) => {
       try {
         const res = await instance.post(`/store/${storeId}`, { order });
-        console.log("orderId 받아와야함", res.data.orderId);
         if (res.status === 200) {
           Swal.fire({
             position: "top-end",

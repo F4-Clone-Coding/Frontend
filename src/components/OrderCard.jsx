@@ -1,70 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
-const OrderCard = () => {
+const OrderCard = ({ orders }) => {
+
   return (
     <>
       <StMenuContainer>
-        <StWrap>
-          <StTextWrap>
-            <p>엽기떡볶이 1개</p>
-            <p>12,000원</p>
-          </StTextWrap>
-          <Stimg
-            src="https://doewxs707ovkc.cloudfront.net/v3/prod/image/item/mainpage/907/ad4474bef39c4167b84477eaa7a5052f20210708171733."
-            alt="menu"
-          />
-        </StWrap>
-        <StWrap>
-          <StTextWrap>
-            <p>엽기떡볶이 1개</p>
-            <p>12,000원</p>
-          </StTextWrap>
-          <Stimg
-            src="https://doewxs707ovkc.cloudfront.net/v3/prod/image/item/mainpage/907/ad4474bef39c4167b84477eaa7a5052f20210708171733."
-            alt="menu"
-          />
-        </StWrap>
-        <StWrap>
-          <StTextWrap>
-            <p>엽기떡볶이 1개</p>
-            <p>12,000원</p>
-          </StTextWrap>
-          <Stimg
-            src="https://doewxs707ovkc.cloudfront.net/v3/prod/image/item/mainpage/907/ad4474bef39c4167b84477eaa7a5052f20210708171733."
-            alt="menu"
-          />
-        </StWrap>
-        <StWrap>
-          <StTextWrap>
-            <p>엽기떡볶이 1개</p>
-            <p>12,000원</p>
-          </StTextWrap>
-          <Stimg
-            src="https://doewxs707ovkc.cloudfront.net/v3/prod/image/item/mainpage/907/ad4474bef39c4167b84477eaa7a5052f20210708171733."
-            alt="menu"
-          />
-        </StWrap>
-        <StWrap>
-          <StTextWrap>
-            <p>엽기떡볶이 1개</p>
-            <p>12,000원</p>
-          </StTextWrap>
-          <Stimg
-            src="https://doewxs707ovkc.cloudfront.net/v3/prod/image/item/mainpage/907/ad4474bef39c4167b84477eaa7a5052f20210708171733."
-            alt="menu"
-          />
-        </StWrap>
-        <StWrap>
-          <StTextWrap>
-            <p>엽기떡볶이 1개</p>
-            <p>12,000원</p>
-          </StTextWrap>
-          <Stimg
-            src="https://doewxs707ovkc.cloudfront.net/v3/prod/image/item/mainpage/907/ad4474bef39c4167b84477eaa7a5052f20210708171733."
-            alt="menu"
-          />
-        </StWrap>
+        {orders?.menus.map((menu) => (
+          <StWrap key={menu.menuId}>
+            <StTextWrap>
+              <span>
+                {menu.name} - {menu.count}개
+              </span>
+              <p>{menu.price}원</p>
+            </StTextWrap>
+            <Stimg
+              src="https://doewxs707ovkc.cloudfront.net/v3/prod/image/item/mainpage/907/ad4474bef39c4167b84477eaa7a5052f20210708171733."
+              alt="menuImage"
+            />
+          </StWrap>
+        ))}
       </StMenuContainer>
     </>
   );

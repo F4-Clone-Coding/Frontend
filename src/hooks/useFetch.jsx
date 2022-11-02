@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import axios from "axios";
 import { api } from "../shared/apis";
 
 function useFetch(page) {
@@ -12,7 +11,6 @@ function useFetch(page) {
             await setLoading(true);
             await setError(false);
             const res = await api.get(`/?page=${page}`);
-            console.log("Res", res)
             await setStores((prev) => prev.concat(res.data.storeList));
             setLoading(false);
         } catch (err) {
