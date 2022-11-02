@@ -11,28 +11,30 @@ const Store = () => {
   const navigate = useNavigate();
 
     return (
-        <Layout>
-            <StoreWrap>
-                <HeaderBox>
-                    <div className='a'>
-                        <IoArrowBackOutline className='icon' onClick={() => navigate('/user/login')} />&nbsp;&nbsp;<p>배달만민족</p>
-                    </div>
-                    <div className='b'>
-                        <FaHome className='icon' onClick={() => navigate('/')} />
-                        <FaUserAlt className='icon' onClick={() => navigate('/mypage')} />
-                    </div>
-                </HeaderBox>
-                <Category />
-
-            </StoreWrap>
-        </Layout>
-
-    )
+      <Layout>
+            <HeaderBox>
+              <div className="a">
+                <IoArrowBackOutline
+                  className="icon"
+                  onClick={() => navigate("/user/login")}
+                />
+                &nbsp;&nbsp;<p>배달만민족</p>
+              </div>
+              <div className="b">
+                <FaHome className="icon" onClick={() => navigate("/")} />
+                <FaUserAlt
+                  className="icon"
+                  onClick={() => navigate("/mypage")}
+                />
+              </div>
+            </HeaderBox>
+            <Category />
+      </Layout>
+    );
 }
 
 export default Store
-const StoreWrap = styled.div`
-`
+
 const HeaderBox = styled.div`
     display:flex;
     justify-content: space-between;

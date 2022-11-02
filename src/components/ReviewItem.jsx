@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const ReviewItem = () => {
-
   return (
     <StReviewBox>
-      <p style={{fontSize: "14px"}}>NICKNAME</p>
-      <p style={{overflow: "hidden",textOverflow: "ellipsis", whiteSpace: "nowrap"}}>COMMENT -------------------------ASDASDAS------asdasdasdasd---------------------------ASDASD---asdasdasdasdasd----</p>
+      <p style={{ fontSize: "14px" }}>NICKNAME</p>
+      <p
+        style={{
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+        }}
+      >
+      </p>
     </StReviewBox>
   );
 };

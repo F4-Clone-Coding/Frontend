@@ -17,16 +17,30 @@ const MenuCard = ({ menus, storeId }) => {
         const res = await instance.post(`/store/${storeId}`, { order });
         if (res.status === 200) {
           Swal.fire({
-            position: "top-end",
+            position: "center",
             icon: "success",
+            background:
+              "#fff url(https://images.velog.io/images/kongsub/post/96e23619-25ab-4d99-a5fd-6e31a9e7fa8b/100600104.2.jpg)",
             title: "주문이 완료되었습니다!",
+            width: 350,
+            height: 200,
             showConfirmButton: false,
-            timer: 1000,
+            timer: 1500,
           });
           nav(`/order/${res.data.orderId}`);
         }
       } catch (err) {
-        return console.log('주문하기 에러', err);
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          background:
+            "#fff url(https://images.velog.io/images/kongsub/post/96e23619-25ab-4d99-a5fd-6e31a9e7fa8b/100600104.2.jpg)",
+          title: "로그인 후 이용해주세요!",
+          width: 350,
+          height: 200,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     };
 
