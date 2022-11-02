@@ -1,15 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { api } from "../../shared/apis";
+import Swal from "sweetalert2";
+
+import instance from "../../shared/apis";
 
 // ----- InitialState -----
 const initialState = {
-  user: [],
   isLoading: false,
 };
 /**유저 정보 가져오기 */
 export const getUser = createAsyncThunk("user/getUser", async (_, thunkAPI) => {
   try {
-    const res = await api.get("/");
+    const res = await instance.get("/user");
     console.log("res", res);
     return thunkAPI.fulfillWithValue(res.data);
   } catch (err) {
@@ -22,7 +23,7 @@ export const editUserName = createAsyncThunk(
   "user/editUserName",
   async (userDeta, thunkAPI) => {
     try {
-      const { data } = await api.patch("/user/nickname", userDeta);
+      const { data } = await instance.patch("/user/nickname", userDeta);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -35,9 +36,15 @@ export const editUserPw = createAsyncThunk(
   "user/editUserPw",
   async (userDeta, thunkAPI) => {
     try {
-      const { data } = await api.patch("/user/password", userDeta);
+      const { data } = await instance.patch("/user/password", userDeta);
+      Swal.fire(
+        "비밀번호 변경 완료!",
+        "비밀번호를 성공적으로 변경되었습니다!",
+        "success"
+      );
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
+      Swal.fire("비밀번호 변경 실패!", `기존 비밀번호와 다릅니다!`, "error");
       return thunkAPI.rejectWithValue(error);
     }
   }

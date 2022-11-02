@@ -17,7 +17,6 @@ const OrderPost = () => {
   const [tabId, setTabId] = useState(0);
   const location = useLocation();
   const storeName = location.state.storeName;
-  console.log("storeName", storeName);
 
   const tabHandlser = (tabNum) => {
     setTabId(tabNum);

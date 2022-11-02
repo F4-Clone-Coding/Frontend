@@ -17,8 +17,9 @@ const Category = () => {
   // const { stores } = useSelector((state) => state.stores)
 
   // const [query, setQuery] = useState("")
+  const [categoryId, setCategoryId] = useState(0);
   const [page, setPage] = useState(0)
-  const { loading, error, stores } = useFetch(page)
+  const { loading, error, stores } = useFetch(page, categoryId)
   const loader = useRef(null)
 
   console.log("store1111", stores)
@@ -42,14 +43,12 @@ const Category = () => {
   }, [handleObserver]);
 
 
-  const [categoryId, setCategoryId] = useState(0);
+
 
   const handleChange = (event) => {
+
     setCategoryId(event);
   };
-  // useEffect(() => {
-  //   dispatch(getAllStore())
-  // }, [dispatch])
 
   return (
     <>
