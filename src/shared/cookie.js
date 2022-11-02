@@ -7,7 +7,7 @@ export const setAccessToken = (accessToken) => {
   // const expireDate = today.setDate(today.getDate() + 3);
   const expireDate = new Date(new Date().getTime() + 1000 * 60 * 60 * 6);
   return cookies.set("accessToken", accessToken, {
-    samSite: "none",
+    samSite: "Lax",
     path: "/",
     expires: new Date(expireDate),
   });
@@ -18,11 +18,11 @@ export const setRefreshToken = (refreshToken) => {
   // const expireDate = today.setDate(today.getDate() + 1);
   const expireDate = new Date(new Date().getTime() + 1000 * 60 * 60 * 24);
   return cookies.set("refreshToken", refreshToken, {
-    samSite: "none",
+    samSite: "Lax",
     path: "/",
     expires: new Date(expireDate),
   });
-}
+};
 
 export const getCookieToken = () => {
   return cookies.get("accessToken");
@@ -33,9 +33,9 @@ export const getRefreshToken = () => {
 };
 
 export const removeCookieToken = () => {
-  return cookies.remove("accessToken", { sameSite: "none", path: "/" });
+  return cookies.remove("accessToken", { samSite: "Lax", path: "/" });
 };
 
 export const removeRefreshCookieToken = () => {
-  return cookies.remove("refreshToken", { sameSite: "none", path: "/" });
+  return cookies.remove("refreshToken", { samSite: "Lax", path: "/" });
 };

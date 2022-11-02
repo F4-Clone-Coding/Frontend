@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { getAllStore } from '../redux/modules/storeSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import useFetch from '../hooks/useFetch';
 
 import StoreCard from './StoreCard';
@@ -31,11 +30,11 @@ const Category = () => {
       setPage((prev) => prev + 1)
     }
   }, [])
-  
+
   const handleChange = (event) => {
     setCategoryId(event);
   };
-  
+
   useEffect(() => {
     const option = {
       root: null,
