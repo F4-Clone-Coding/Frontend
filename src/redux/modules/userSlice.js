@@ -21,9 +21,11 @@ export const getUser = createAsyncThunk("user/getUser", async (_, thunkAPI) => {
 /**유저 닉네임 수정하기 */
 export const editUserName = createAsyncThunk(
   "user/editUserName",
-  async (userDeta, thunkAPI) => {
+
+  async (userData, thunkAPI) => {
     try {
-      const { data } = await instance.patch("/user/nickname", userDeta);
+      console.log("dd", userData);
+      const { data } = await instance.patch("/user/nickname", userData);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
