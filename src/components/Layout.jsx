@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import phone from "../image/phone.png"
+import phone from "../image/phone2.png"
 
 const Layout = (props) => {
   return (
