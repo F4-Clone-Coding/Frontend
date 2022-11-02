@@ -5,9 +5,10 @@ import BeaminImg from '../image/BeaminImg.png'
 
 
 const StoreCard = ({ store }) => {
-    const navigate = useNavigate()
-    console.log("store22222", store)
+  const navigate = useNavigate()
+
     return (
+
         <CardBox onClick={() => navigate(`/store/${store?.storeId}`, { state: { storeName: store?.name } })}>
             <img alt="a" className='img' src={BeaminImg} />
             <TextBox>
@@ -19,6 +20,7 @@ const StoreCard = ({ store }) => {
             </TextBox>
         </CardBox>
     )
+
 }
 
 export default StoreCard

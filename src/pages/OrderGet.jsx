@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import Header from "../components/Header";
@@ -8,14 +8,15 @@ import Swal from "sweetalert2";
 import { FaPhoneAlt, FaStore } from "react-icons/fa";
 import OrderCard from "../components/OrderCard";
 import { orderGet } from '../redux/modules/orderSlice';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const OrderGet = () => {
+  const dispatch = useDispatch();
   const nav = useNavigate();
   const { orderId } = useParams();
-  console.log('orderId', orderId)
-  // const { orders } = useSelector(state => state.orders)
-  // const order = orders.filter((order) => order.orderId === orderId)
+  console.log("orderId", orderId);
+  const { orders } = useSelector((state) => state.orders);
+  console.log("orders", orders);
 
   const storeInfo = () => {
     Swal.fire({
@@ -25,9 +26,9 @@ const OrderGet = () => {
     });
   };
 
-  // useEffect(() => {
-  //   dispatch(orderGet(orderId))
-  // }, [dispatch])
+  useEffect(() => {
+    dispatch(orderGet(orderId));
+  }, [dispatch]);
 
   return (
     <Layout>
@@ -35,10 +36,12 @@ const OrderGet = () => {
       <StInfo>
         <StDescWrap>
           <p style={{ color: "darkgray", fontSize: "14px" }}>배달 완료</p>
-          <p style={{ fontSize: "20px" }}>업소명</p>
-          <p style={{ fontSize: "14px" }}>OO메뉴 외 O개</p>
+          <p style={{ fontSize: "20px" }}>{orders?.name}</p>
+          <p style={{ fontSize: "14px" }}>
+            {orders?.menus[0].name} 외 {orders?.menusCount - 1}개
+          </p>
           <p style={{ color: "darkgray", fontSize: "14px" }}>
-            주문일시 2022. 10. 29.
+            주문일시 : {orders?.createdAt}
           </p>
         </StDescWrap>
         <StbtnWrap>
@@ -46,16 +49,16 @@ const OrderGet = () => {
             <FaPhoneAlt />
             전화
           </Button>
-          <Button btn="btn2" onClick={() => nav(`/`)}>
+          <Button btn="btn2" onClick={() => nav(`/store/${orders?.storeId}`, { state: { storeName: orders?.name } })}>
             <FaStore style={{ margin: "3px 3px 0px" }} />
             가게 보기
           </Button>
         </StbtnWrap>
       </StInfo>
-      <OrderCard />
+      <OrderCard orders={orders} />
       <StPriceContainer>
         <StPriceBox>
-          <p>총 주문금액: 100,000원</p>
+          <p>총 주문금액: {orders?.sum}원</p>
         </StPriceBox>
       </StPriceContainer>
     </Layout>
