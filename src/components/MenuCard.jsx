@@ -61,7 +61,7 @@ const MenuCard = ({ menus, storeId }) => {
       </StTotalPriceBox>
       <StBtnBox>
         <Button onClick={() => orderHandler(order, storeId)} btn="btn1">
-          주문하러 가기
+          주문하기
         </Button>
       </StBtnBox>
     </>

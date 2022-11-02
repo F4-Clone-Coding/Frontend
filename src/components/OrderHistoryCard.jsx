@@ -29,7 +29,7 @@ const OrderHistoryCard = ({ orderCard }) => {
     // `/store/${store?.storeId}`
 
     return (
-        <StWrap onClick={() => navigate(`/store/${orderCard?.storeId}`)}  >
+      <StWrap onClick={() => navigate(`/store/${orderCard?.storeId}`, { state: { storeName: orderCard?.name } })}  >
             <StTextWrap>
                 <StTitleBox>
                     <span id="title">{orderCard.name} &nbsp;</span>
