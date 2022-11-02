@@ -21,7 +21,7 @@ const Signup = () => {
             const res = await api.post("/user/signup", payload)
             if (res.status === 200) {
                 Swal.fire({
-                    position: 'top-end',
+                    position: "center",
                     icon: 'success',
                     title: '회원가입을 축하합니다!',
                     showConfirmButton: false,

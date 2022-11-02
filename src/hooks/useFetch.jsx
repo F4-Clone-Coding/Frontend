@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { api } from "../shared/apis";
 
-function useFetch(page) {
+function useFetch(page, categoryId) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [stores, setStores] = useState([]);
@@ -11,7 +11,7 @@ function useFetch(page) {
         try {
             await setLoading(true);
             await setError(false);
-            const res = await api.get(`/?page=${page}`);
+            const res = await api.get(`${categoryId === 0 ? `/?page=${page}` : `/${categoryId}?page=${page}`}`);
             console.log("Res", res)
             await setStores((prev) => prev.concat(res.data.storeList));
             setLoading(false);
@@ -21,7 +21,7 @@ function useFetch(page) {
     }, [page]);
 
     useEffect(() => {
-        sendQuery(page);
+        sendQuery();
     }, [sendQuery, page]);
 
     return { loading, error, stores };

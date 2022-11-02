@@ -8,30 +8,109 @@ import Button from '../elements/button';
 import styled from 'styled-components'
 import { IoArrowBackOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom'
-import { editUserName, getUser } from '../redux/modules/userSlice';
-
+import { editUserName, editUserPw, getUser } from '../redux/modules/userSlice';
+import instance from '../shared/apis';
+import Swal from 'sweetalert2';
 
 const MyPage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const user = useSelector(state => state.user)
-    console.log("user", user)
-    useEffect(() => {
-        dispatch(getUser())
-    }, [dispatch])
 
-    const [editName, setEditName] = useState({
-        nickname: user.nickname
-    })
-
-
-    const onSubmitName = () => {
-        dispatch(editUserName({ ...editName }))
+    const [info, setInfo] = useState()
+    const [editName, setEditName] = useState();
+    console.log("얍222", editName)
+    /**유저정보 가져오기 */
+    const getUserdata = async () => {
+        try {
+            const res = await instance.get("/user")
+            console.log("성공이다", res)
+            setInfo(res.data.user)
+            setEditName(res.data.user.nickname)
+            console.log("얍", res.data.user.nickname)
+        } catch (error) {
+            console.log("실패다", error)
+        }
     }
 
+    // const getUserdata = () => {
+    //     instance.get("/user").then((res) => {
+    //         console.log("성공이다", res)
+    //         setInfo(res.data.user)
+    //         setEditName(res.data.user.nickname)
+    //         console.log("얍", res.data.user.nickname)
+    //     })
+    //         .catch((error) => {
+    //             console.log("실패다", error)
+    //         })
+
+    // }
+
+
+
+
+    /**이름 변경 구간 */
+    const onChangeName = (e) => {
+        setEditName(e.target.value)
+    }
+    console.log("bi", editName)
+    const onSubmitName = (e) => {
+        e.preventDefault()
+        const nameCheck = /^[가-힣0-9]{3,10}$/
+        if (editName.length > 2 && editName.length < 11 && nameCheck.test(editName)) {
+            dispatch(editUserName({ nickname: editName }))
+            Swal.fire(
+                '닉네임 변경 완료!',
+                `${editName}님 반가워요!`,
+                'success'
+            )
+        } else {
+            Swal.fire(
+                '닉네임 변경 실패!',
+                `한글,숫자 3~10자리로 부탁드려요!`,
+                'error'
+            )
+        }
+
+
+    }
+
+    /**패스워드 변경 구간 */
+    const [editPw, setEditPw] = useState({
+        password: "",
+        newPassword: "",
+    })
+
+    const onChangePw = (e) => {
+        const { name, value } = e.target
+        setEditPw({ ...editPw, [name]: value })
+    }
+
+    const onSubmitPw = (e) => {
+        e.preventDefault()
+        dispatch(editUserPw({ ...editPw })).then((res) => { console.log("헐", res) })
+        setEditPw("")
+    }
 
     // logoutHandler에 refreshToken 넣어서 보내기
     const logoutHandler = () => { }
+    const [imageSrc, setImageSrc] = useState('');
+
+    const encodeFileToBase64 = (fileBlob) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(fileBlob);
+        return new Promise((resolve) => {
+            reader.onload = () => {
+                setImageSrc(reader.result);
+                resolve();
+            };
+        });
+    };
+
+
+
+    useEffect(() => {
+        getUserdata()
+    }, [dispatch])
 
     return (
         <>
@@ -42,21 +121,27 @@ const MyPage = () => {
                     <p className='b' onClick={onSubmitName} >저장</p>
                 </HeaderBox>
                 <NameBox>
-                    <img alt='a' src="https://mblogthumb-phinf.pstatic.net/MjAxOTA1MTdfMjg5/MDAxNTU4MDU5MjY3NzI0.La9iCTKSS9Cue6MbMeNSJADSkjSr0VMPlAsIdQYGjoYg.q_VK0tw6okzVQOBJbXGKFFGJkLJUqLVT26CZ9qe29Xcg.PNG.smartbaedal/%ED%97%A4%ED%97%A4%EB%B0%B0%EB%8B%AC%EC%9D%B4_%EC%9E%90%EB%A5%B8%EA%B2%83.png?type=w800" />
-                    <StInput inp="inp3" type="text" value={user.nickname} placeholder='닉네임' onChange={(e) => { setEditName({ ...editName, nickname: e.target.value }) }} />
+                    <div style={{ position: "absolute", marginTop: "-110px" }}>
+                        {imageSrc && <img alt='preview-img' src={imageSrc} />}
+                    </div>
+                    <StLabel htmlFor='photo' />
+                    <StFileInput id="photo" type="file" onChange={(e) => {
+                        encodeFileToBase64(e.target.files[0])
+                    }} />
+                    <StInput style={{ position: "absolute", marginTop: "50px" }} type="text" value={editName} name="nickname" onChange={onChangeName} />
                 </NameBox>
                 <PasswordBox>
-                    <p>이메일&nbsp;&nbsp; @ {user.email}</p>
+                    <p>이메일&nbsp;&nbsp; @ {info?.email}</p>
                     <div className='pwInp'>
                         <p>현재 비밀번호</p>
-                        <StInput inp="inp3" type="password" />
+                        <StInput type="password" name='password' value={editPw.password} onChange={onChangePw} />
                     </div>
                     <div className='pwInp'>
                         <p>신규 비밀번호</p>
-                        <StInput style={{ margin: '1.8px' }} inp="inp3" type="password" placeholder='10-20자 이내' />
+                        <StInput style={{ margin: '1.8px' }} name="newPassword" type="password" placeholder='10-20자 이내' onChange={onChangePw} />
                     </div>
                     <div className="btn">
-                        <Button btn="btn2">변경</Button>
+                        <Button btn="btn2" onClick={onSubmitPw}>변경</Button>
                     </div>
                 </PasswordBox>
                 <OrderList>
@@ -97,7 +182,7 @@ const HeaderBox = styled.div`
     }
 `
 
-const NameBox = styled.form`
+const NameBox = styled.div`
     display:flex;
     flex-direction: column;
     align-content: center;
@@ -113,12 +198,12 @@ const NameBox = styled.form`
         width: 54px;
         height: 54px;
         border-radius: 30px;
-        margin-bottom:20px;
-        margin-top:-10px;
+        margin-top:8px;
+        /* border: 1px solid red */
     }
 `
 
-const PasswordBox = styled.form`
+const PasswordBox = styled.div`
     display:flex;
     flex-direction: column;
     align-items: flex-start;
@@ -184,4 +269,28 @@ const StInput = styled.input`
         border: 3px solid var(--brand-color);
         outline: none
     }
+`
+
+const StFileInput = styled.input`
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+`
+
+const StLabel = styled.label`
+    position: relative;
+    margin-top: -105.5px;
+    
+    cursor: pointer;
+    /* background-color: green ; */
+    width: 54px;
+    height: 54px;
+     border-radius: 50%;
+     &:hover{
+        background-color: #1f1e1f16;
+     }
 `

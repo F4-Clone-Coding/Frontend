@@ -8,10 +8,10 @@ const StoreCard = ({ store }) => {
     const navigate = useNavigate()
     console.log("store22222", store)
     return (
-        <CardBox >
-            <img alt="a" className='img' src={BeaminImg} onClick={() => navigate(`/store/${store.storeId}`)} />
+        <CardBox onClick={() => navigate(`/store/${store?.storeId}`, { state: { storeName: store?.name } })}>
+            <img alt="a" className='img' src={BeaminImg} />
             <TextBox>
-                <p id="p1" onClick={() => navigate(`/store/${store?.storeId}`, { state: { storeName: store?.name } })}>{store?.name}</p>
+                <p id="p1">{store?.name}</p>
                 <div >
                     <p style={{ marginBottom: "5px" }}>⭐5.0(100+)</p>
                     <p>배달비 무료</p>
@@ -33,15 +33,16 @@ const CardBox = styled.div`
     padding: 10px;
     gap: 20px;
     transition: all 0.2s linear;
+    cursor: pointer;
     &:hover{
         transform: scale(1.05);
-
+        cursor: pointer;
     }
     .img{
         width: 80px;
         height: 80px;
         border-radius: var(--lg-radius);
-        cursor: pointer;
+
     }
 `
 const TextBox = styled.div`
@@ -49,7 +50,6 @@ const TextBox = styled.div`
     #p1{
         font-size: 18px;
         margin-bottom: 10px;
-        cursor: pointer;
     }
     
 `
