@@ -25,36 +25,28 @@ const Login = () => {
             try {
                 const response = await api.post("/user/login", info);
                 console.log("acc", response.data)
-                if (!response.data?.message) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "다시 확인해주세요!",
-                        text: "아이디 또는 비밀번호가 틀렸습니다.",
-                    });
-                    throw new Error("에러메세지")
-                }
-                if (response.data.message) {
-                    setAccessToken(response.data.accessToken)
-                    setRefreshToken(response.data.refreshToken)
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "로그인에 성공하였습니다!",
-                        showConfirmButton: false,
-                        timer: 2000,
-                    });
-                    navigate("/");
-                }
+                setAccessToken(response.data.accessToken)
+                setRefreshToken(response.data.refreshToken)
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "로그인에 성공하였습니다!",
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+                navigate("/");
+
             } catch (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "다시 확인해주세요!",
+                    text: "아이디 또는 비밀번호가 틀렸습니다.",
+                });
+
                 console.log(error)
             }
         })
     }
-
-
-
-
-
 
     return (
         <Layout>
