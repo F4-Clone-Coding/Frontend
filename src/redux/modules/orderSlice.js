@@ -1,9 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { api } from "../../shared/apis";
+import instance from '../../shared/apis'
 
 // ----- InitialState -----
 const initialState = {
-  orders: [{}],
   isLoading: false,
 };
 
@@ -11,9 +10,11 @@ const initialState = {
 export const orderGet = createAsyncThunk(
   "menus/orederGet",
   async (payload, thunkAPI) => {
+    console.log('payload', payload)
     try {
-      const res = await api.get(`/order/${payload}`)
-      return thunkAPI.fulfillWithValue(res.data)
+      const res = await instance.get(`/order/${payload}`)
+      console.log("res.data.order", res.data.order);
+      return thunkAPI.fulfillWithValue(res.data.order);
     } catch (err) {
       return thunkAPI.rejectWithValue(err)
     }
@@ -33,9 +34,8 @@ const orderSlice = createSlice({
     // ----- 해당 주문내역 조회(orderId 비교) ----- 
     builder.addCase(orderGet.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.orders = state.orders.filter((order) => 
-        order.orderId === action.payload
-    )});
+      state.orders = action.payload;
+    });
     builder.addCase(orderGet.rejected, (state) => {
       state.isLoading = false;
     });

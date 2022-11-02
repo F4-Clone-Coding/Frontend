@@ -5,20 +5,24 @@ import BeaminImg from '../image/BeaminImg.png'
 
 
 const StoreCard = ({ store }) => {
-    const navigate = useNavigate()
-    console.log("store22222", store)
+  const navigate = useNavigate()
+
     return (
-        <CardBox >
-            <img alt="a" className='img' src={BeaminImg} onClick={() => navigate(`/store/${store.storeId}`)} />
-            <TextBox>
-                <p id="p1" onClick={() => navigate(`/store/${store?.storeId}`, { state: { storeName: store?.name } })}>{store?.name}</p>
-                <div >
-                    <p style={{ marginBottom: "5px" }}>⭐5.0(100+)</p>
-                    <p>배달비 무료</p>
-                </div>
-            </TextBox>
-        </CardBox>
-    )
+      <CardBox
+        onClick={() =>
+          navigate(`/store/${store?.storeId}`, { state: { storeName: store?.name }, })
+        }
+      >
+        <img alt="a" className="img" src={BeaminImg} />
+        <TextBox>
+          <p id="p1">{store?.name}</p>
+          <div>
+            <p style={{ marginBottom: "5px" }}>⭐5.0(100+)</p>
+            <p>배달비 무료</p>
+          </div>
+        </TextBox>
+      </CardBox>
+    );
 }
 
 export default StoreCard
