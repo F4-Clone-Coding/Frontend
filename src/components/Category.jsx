@@ -31,7 +31,11 @@ const Category = () => {
       setPage((prev) => prev + 1)
     }
   }, [])
-
+  
+  const handleChange = (event) => {
+    setCategoryId(event);
+  };
+  
   useEffect(() => {
     const option = {
       root: null,
@@ -41,14 +45,6 @@ const Category = () => {
     const observer = new IntersectionObserver(handleObserver, option);
     if (loader.current) observer.observe(loader.current);
   }, [handleObserver]);
-
-
-
-
-  const handleChange = (event) => {
-
-    setCategoryId(event);
-  };
 
   return (
     <>
