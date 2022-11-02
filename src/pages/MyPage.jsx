@@ -191,8 +191,8 @@ const MyPage = () => {
             <Layout>
                 <HeaderBox>
                     <IoArrowBackOutline className='icon' onClick={() => navigate(-1)} />
-                    <p className='a'>내 정보 수정</p>
-                    <p className='b' onClick={onSubmitName} >저장</p>
+                    <p className='a'>My배민</p>
+                    <span className='b' style={{ marginLeft: "-28px" }}>찜목록</span>
                 </HeaderBox>
                 <NameBox>
                     <div style={{ position: "absolute", marginTop: "-110px" }}>
@@ -200,7 +200,10 @@ const MyPage = () => {
                     </div>
                     <StLabel htmlFor='photo' />
                     <StFileInput id="photo" type="file" onChange={onChangeImg} />
-                    <StInput style={{ position: "absolute", marginTop: "50px" }} type="text" value={editName} name="nickname" onChange={onChangeName} />
+                    <StNicknameBox>
+                        <StInput type="text" value={editName} name="nickname" onChange={onChangeName} />
+                        <p className='c' onClick={onSubmitName} >저장</p>
+                    </StNicknameBox>
                 </NameBox>
                 <PasswordBox>
                     <p>이메일&nbsp;&nbsp; @ {info?.email}</p>
@@ -248,7 +251,7 @@ const HeaderBox = styled.div`
     .b{
         font-size:20px;
         &:hover{
-            color: var(--brand-color)
+            color: var(--point-color)
         }
         cursor: pointer;
     }
@@ -369,13 +372,31 @@ const StFileInput = styled.input`
 
 const StLabel = styled.label`
     position: relative;
-    margin-top: -105.5px;
+    margin-top: -135.5px;
     
     cursor: pointer;
     width: 54px;
     height: 54px;
      border-radius: 50%;
+     /* background-color: green; */
      &:hover{
         background-color: #1f1e1f16;
      }
+`
+
+const StNicknameBox = styled.div`
+    display:flex;
+    align-items: center;
+    margin: 30px 0px -100px 0px;
+
+    .c{
+        font-size: 20px;
+        margin-left: 20px;
+        margin-right: -10px;
+        cursor: pointer;
+        &:hover{
+            color: var(--brand-color)
+        }
+    }
+
 `

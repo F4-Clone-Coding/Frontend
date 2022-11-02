@@ -4,8 +4,13 @@ import styled from 'styled-components'
 import BeaminImg from '../image/BeaminImg.png'
 
 const OrderHistoryCard = ({ orderCard }) => {
-    console.log("oc", orderCard)
+    console.log("oc", orderCard.storeId)
     const navigate = useNavigate()
+
+
+    const orderTime = new Date(orderCard?.createdAt).getTime()
+
+
 
     function displayedAt(createdAt) {
         console.log(createdAt)
@@ -29,11 +34,11 @@ const OrderHistoryCard = ({ orderCard }) => {
     // `/store/${store?.storeId}`
 
     return (
-        <StWrap onClick={() => navigate(`/store/${orderCard?.storeId}`)}  >
+        <StWrap onClick={() => navigate(`/store/${orderCard?.storeId}`, { state: { storeName: orderCard?.name } })}  >
             <StTextWrap>
                 <StTitleBox>
                     <span id="title">{orderCard.name} &nbsp;</span>
-                    <span id="time">{displayedAt(Date.now())}</span>
+                    <span id="time">{displayedAt(orderTime)}</span>
                 </StTitleBox>
                 <span>
                     {orderCard.menu} 외 {orderCard.menuCount - 1}개
