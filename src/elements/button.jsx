@@ -30,7 +30,7 @@ export const btn1 = css`
   font-size: 16px;
   margin: 0;
   position: absolute;
-  bottom: 15px;
+  bottom: 65px;
   border-radius: var(--sm-radius);
   cursor: pointer;
   &:hover {

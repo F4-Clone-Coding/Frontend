@@ -8,7 +8,6 @@ const StoreCard = ({ store }) => {
   const navigate = useNavigate()
 
     return (
-
         <CardBox onClick={() => navigate(`/store/${store?.storeId}`, { state: { storeName: store?.name } })}>
             <img alt="a" className='img' src={BeaminImg} />
             <TextBox>

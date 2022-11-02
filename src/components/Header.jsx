@@ -9,8 +9,8 @@ const Header = () => {
 
   return (
     <StHeaderContainer>
-      <IoArrowBackOutline className="icon" onClick={() => navigate("/")} />
-      <FaHome className="icon" onClick={() => navigate("/")} />
+      <IoArrowBackOutline className="icon1" onClick={() => navigate("/")} />
+      <FaHome className="icon2" onClick={() => navigate("/")} />
     </StHeaderContainer>
   );
 };
@@ -21,12 +21,20 @@ const StHeaderContainer = styled.div`
   /* background: white; */
   width: 100%;
   position: absolute;
-  top: 0;
+  top: 20;
   display: flex;
   justify-content: space-between;
-  .icon {
+  .icon1 {
     font-size: 24px;
-    padding: 10px 14px;
+    padding: 8px 12px;
+    cursor: pointer;
+    &:hover {
+      color: var(--brand-color);
+    }
+  }
+  .icon2 {
+    font-size: 24px;
+    padding: 8px 65px;
     cursor: pointer;
     &:hover {
       color: var(--brand-color);
