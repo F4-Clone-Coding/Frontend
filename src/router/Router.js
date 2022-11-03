@@ -12,7 +12,11 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Store />} />
+        <Route
+          path="/"
+          element={<Login style={{ position: "absolute" }} />}
+        />
+        <Route path="/store" element={<Store />} />
         <Route
           path="/store/:storeId"
           element={<OrderPost style={{ position: "absolute" }} />}
@@ -20,10 +24,6 @@ const Router = () => {
         <Route
           path="/order/:orderId"
           element={<OrderGet style={{ position: "absolute" }} />}
-        />
-        <Route
-          path="/user/login"
-          element={<Login style={{ position: "absolute" }} />}
         />
         <Route
           path="/user/signup"
