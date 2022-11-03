@@ -25,7 +25,7 @@ export const editUserName = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       console.log("dd", userData);
-      const { data } = await instance.patch("/user/nickname", userData);
+      const { data } = await instance.patch("/user", userData);
       console.log("data", data.nickname);
       return thunkAPI.fulfillWithValue(data.nickname);
     } catch (error) {
