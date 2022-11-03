@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./Router.css";
 import React from "react";
 import Store from "../pages/Store";
 import Login from "../pages/Login";
@@ -12,11 +13,26 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Store />} />
-        <Route path="/store/:storeId" element={<OrderPost />} />
-        <Route path="/order/:orderId" element={<OrderGet />} />
-        <Route path="/user/login" element={<Login />} />
-        <Route path="/user/signup" element={<Signup />} />
-        <Route path="/mypage" element={<MyPage />} />
+        <Route
+          path="/store/:storeId"
+          element={<OrderPost style={{ position: "absolute" }} />}
+        />
+        <Route
+          path="/order/:orderId"
+          element={<OrderGet style={{ position: "absolute" }} />}
+        />
+        <Route
+          path="/user/login"
+          element={<Login style={{ position: "absolute" }} />}
+        />
+        <Route
+          path="/user/signup"
+          element={<Signup style={{ position: "absolute" }} />}
+        />
+        <Route
+          path="/mypage"
+          element={<MyPage style={{ position: "absolute" }} />}
+        />
       </Routes>
     </BrowserRouter>
   );

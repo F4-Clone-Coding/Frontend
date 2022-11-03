@@ -21,15 +21,15 @@ const Signup = () => {
             const res = await api.post("/user/signup", payload)
             if (res.status === 200) {
                 Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  background:
-                    "#fff url(https://images.velog.io/images/kongsub/post/96e23619-25ab-4d99-a5fd-6e31a9e7fa8b/100600104.2.jpg)",
-                  title: "가입을 축하합니다!",
-                  width: 350,
-                  height: 200,
-                  showConfirmButton: false,
-                  timer: 1500,
+                    position: "center",
+                    icon: "success",
+                    background:
+                        "#fff url(https://images.velog.io/images/kongsub/post/96e23619-25ab-4d99-a5fd-6e31a9e7fa8b/100600104.2.jpg)",
+                    title: "가입을 축하합니다!",
+                    width: 350,
+                    height: 200,
+                    showConfirmButton: false,
+                    timer: 1500,
                 });
                 navigate("/user/login");
             }

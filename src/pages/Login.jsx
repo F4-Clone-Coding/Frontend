@@ -9,6 +9,7 @@ import { api } from '../shared/apis';
 import { getCookieToken, setAccessToken, setRefreshToken } from "../shared/cookie";
 import { useForm } from "react-hook-form";
 
+
 const Login = () => {
     const navigate = useNavigate()
     const cookie = getCookieToken("accessToken")
@@ -78,6 +79,10 @@ const Login = () => {
         <Layout>
             <LoginWrap>
                 <div><IoClose className='cancel' onClick={() => navigate('/')} /></div>
+                <LogoTitle>
+                    <p className="logoTitle">우리가<br />어떤 민족<br />입니까?</p>
+                    <p className="subTitle">배달<span>만</span>민족</p>
+                </LogoTitle>
                 <FormBox onSubmit={handleSubmit(onClickLogin)}>
                     <StInput placeholder='이메일'
                         {...register("email",
@@ -137,13 +142,33 @@ const LoginWrap = styled.div`
             }
     }
 `
+const LogoTitle = styled.div`
+    display:flex;
+    flex-direction: column;
+    /* background-color: green; */
+    width: 130px;
+    height: 100px;
+    margin: 0PX 105PX 0PX 135PX;
+    .logoTitle{
+        font-size: 38px;
+        line-height: 2.5rem
+    }
+    .subTitle{
+        margin-top:15px;
+        font-size:25px;
+        span{
+            font-size:20px;
+        }
+    }
+`
+
 const FormBox = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
     align-content: center;
     gap:30px;
-    margin-top: 150px;;
+    margin-top:95px;
     span{
         color: var(--point-color);
     }
@@ -154,7 +179,7 @@ const TextBox = styled.div`
     display:flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 25px;
     gap: 20px;
     span{
         cursor: pointer;
