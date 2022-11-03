@@ -58,22 +58,22 @@ const Login = () => {
         })
     }
 
-    // useEffect(() => {
-    //     if (cookie) {
-    //         Swal.fire({
-    //             position: 'center',
-    //             width: 350,
-    //             heigt: 200,
-    //             background:
-    //                 "#fff url(https://images.velog.io/images/kongsub/post/96e23619-25ab-4d99-a5fd-6e31a9e7fa8b/100600104.2.jpg)",
-    //             icon: 'success',
-    //             title: '이미 로그인 됐어요!',
-    //             showConfirmButton: false,
-    //             timer: 1500
-    //         })
-    //         navigate(-1);
-    //     }
-    // })
+    useEffect(() => {
+        if (cookie) {
+            Swal.fire({
+                position: 'center',
+                width: 350,
+                heigt: 200,
+                background:
+                    "#fff url(https://images.velog.io/images/kongsub/post/96e23619-25ab-4d99-a5fd-6e31a9e7fa8b/100600104.2.jpg)",
+                icon: 'success',
+                title: '이미 로그인 됐어요!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            navigate(-1);
+        }
+    }, [])
 
     return (
         <Layout>
