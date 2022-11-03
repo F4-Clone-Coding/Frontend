@@ -1,22 +1,23 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Category from '../components/Category';
 import Layout from '../components/Layout'
 
-import { getCookieToken } from '../shared/cookie';
+// import { getCookieToken } from '../shared/cookie';
 import styled from 'styled-components'
 import { IoArrowBackOutline } from "react-icons/io5";
 import { FaUserAlt } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
 const Store = () => {
+  // 필요한지 확인
   const navigate = useNavigate();
-  const cookie = getCookieToken('accessToken')
-  useEffect(() => {
-    if (!cookie) {
-      navigate('/');
-    }
-  }, [])
+  // const cookie = getCookieToken('accessToken')
+  // useEffect(() => {
+  //   if (!cookie) {
+  //     navigate('/');
+  //   }
+  // }, [])
 
 
   return (
