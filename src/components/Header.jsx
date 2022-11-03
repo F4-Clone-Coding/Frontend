@@ -4,13 +4,16 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
+
 const Header = () => {
   const navigate = useNavigate();
 
+
+
   return (
     <StHeaderContainer>
-      <IoArrowBackOutline className="icon1" onClick={() => navigate("/")} />
-      <FaHome className="icon2" onClick={() => navigate("/")} />
+      <IoArrowBackOutline className="icon1" onClick={() => navigate(-1)} />
+      <FaHome className="icon2" onClick={() => navigate("/store")} />
     </StHeaderContainer>
   );
 };

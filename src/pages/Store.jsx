@@ -1,36 +1,45 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import Category from '../components/Category';
 import Layout from '../components/Layout'
+
+import { getCookieToken } from '../shared/cookie';
+import styled from 'styled-components'
 import { IoArrowBackOutline } from "react-icons/io5";
 import { FaUserAlt } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom'
-import Category from '../components/Category';
-
 const Store = () => {
   const navigate = useNavigate();
+  const cookie = getCookieToken('accessToken')
+  useEffect(() => {
+    if (!cookie) {
+      navigate('/');
+    }
+  }, [])
 
-    return (
-      <Layout>
-            <HeaderBox>
-              <div className="a">
-                <IoArrowBackOutline
-                  className="icon"
-                  onClick={() => navigate("/user/login")}
-                />
-                &nbsp;&nbsp;<p>배달만민족</p>
-              </div>
-              <div className="b">
-                <FaHome className="icon" onClick={() => navigate("/")} />
-                <FaUserAlt
-                  className="icon"
-                  onClick={() => navigate("/mypage")}
-                />
-              </div>
-            </HeaderBox>
-            <Category />
-      </Layout>
-    );
+
+  return (
+    <Layout>
+      <HeaderBox>
+        <div className="a">
+          <IoArrowBackOutline
+            className="icon"
+            onClick={() => navigate("/")}
+          />
+          &nbsp;&nbsp;<p>배달만민족</p>
+        </div>
+        <div className="b">
+          <FaHome className="icon" onClick={() => navigate("/store")} />
+          <FaUserAlt
+            className="icon"
+            onClick={() => navigate("/mypage")}
+          />
+        </div>
+      </HeaderBox>
+      <Category />
+    </Layout>
+  );
 }
 
 export default Store
