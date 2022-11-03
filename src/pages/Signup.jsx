@@ -31,7 +31,7 @@ const Signup = () => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                navigate("/user/login");
+                navigate("/");
             }
         } catch (error) {
             console.log("회원가입 에러", error)
@@ -44,7 +44,7 @@ const Signup = () => {
     return (
         <Layout>
             <SignupBox>
-                <IoArrowBackOutline className='back' onClick={() => navigate('/user/login')} />
+                <IoArrowBackOutline className='back' onClick={() => navigate('/')} />
                 <Title>회원가입</Title>
                 <FormWrap>
                     <FormBox onSubmit={handleSubmit(onSubmit)}>
