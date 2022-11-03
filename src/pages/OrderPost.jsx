@@ -9,6 +9,8 @@ import ReviewCard from '../components/ReviewCard';
 import { getAllMenu } from "../redux/modules/menuSlice";
 import styled from "styled-components";
 import { FaPhoneAlt, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
+import { FcLikePlaceholder, FcLike } from "react-icons/fc";
+import instance from "../shared/apis";
 
 const OrderPost = () => {
   const dispatch = useDispatch();
@@ -17,6 +19,23 @@ const OrderPost = () => {
   const [tabId, setTabId] = useState(0);
   const location = useLocation();
   const storeName = location.state.storeName;
+
+  const [like, setLike] = useState(false)
+
+  const onChangeLike = async () => {
+    try {
+      const res = await instance.patch(`/store/${storeId}/like`)
+      console.log("res", res)
+      if (res.data.store.like) {
+        setLike(!like)
+      }
+
+    } catch (error) {
+      console.log("실패닷!", error)
+    }
+
+  }
+
 
   const tabHandlser = (tabNum) => {
     setTabId(tabNum);
@@ -49,7 +68,7 @@ const OrderPost = () => {
               전화
             </StBtn>
             <StBtn>
-              <FaRegHeart />찜
+              {!like ? <FcLikePlaceholder onClick={onChangeLike} /> : <FcLike onClick={onChangeLike} />}
             </StBtn>
             <StBtn>
               <FaRegShareSquare />
