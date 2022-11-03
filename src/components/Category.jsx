@@ -11,10 +11,7 @@ import styled from 'styled-components';
 import HorizontalScroll from 'react-scroll-horizontal';
 
 const Category = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
   // const { stores } = useSelector((state) => state.stores)
-
   // const [query, setQuery] = useState("")
   const [categoryId, setCategoryId] = useState(0);
   const [page, setPage] = useState(0)
@@ -39,7 +36,7 @@ const Category = () => {
     const option = {
       root: null,
       rootMargin: "20px",
-      threshold: 0
+      threshold: 0.25
     };
     const observer = new IntersectionObserver(handleObserver, option);
     if (loader.current) observer.observe(loader.current);

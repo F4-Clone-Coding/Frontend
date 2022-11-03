@@ -27,9 +27,9 @@ const OrderPost = () => {
 
   const onChangeLike = async () => {
     try {
-      const res = await instance.patch(`/store/${storeId}/like`)
+      const res = await instance.get(`/store/${storeId}/like`)
       console.log("res", res)
-      if (res.data.store.like) {
+      if (res.data.result) {
         setLike(!like)
       }
 
@@ -74,9 +74,7 @@ const OrderPost = () => {
               <FaPhoneAlt />
               전화
             </StBtn>
-            <StBtn>
-              {!like ? <FcLikePlaceholder onClick={onChangeLike} /> : <FcLike onClick={onChangeLike} />}
-            </StBtn>
+            {!like ? <StBtn><FcLikePlaceholder className="unLike" onClick={onChangeLike} /> 찜하기</StBtn> : <StBtn><FcLike className="inLike" onClick={onChangeLike} /> 찜하기</StBtn>}
             <StBtn>
               <FaRegShareSquare />
               공유
@@ -143,6 +141,14 @@ const StBtn = styled.div`
   &:hover {
     color: var(--brand-color);
   }
+  .unLike{
+    font-size: 24px;
+  }
+
+  .inLike{
+    font-size: 24px;
+  }
+
 `;
 
 const StTabWrap = styled.div`

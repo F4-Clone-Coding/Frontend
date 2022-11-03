@@ -12,13 +12,13 @@ import { FaHome } from "react-icons/fa";
 const Store = () => {
   const navigate = useNavigate();
   const cookie = getCookieToken('accessToken')
+
+
   useEffect(() => {
     if (!cookie) {
       navigate('/');
     }
   }, [])
-
-
   return (
     <Layout>
       <HeaderBox>
