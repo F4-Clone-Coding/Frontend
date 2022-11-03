@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { api } from "../../shared/apis";
+import instance from '../../shared/apis';
 
 // ----- InitialState -----
 const initialState = {
@@ -13,8 +13,8 @@ export const getAllMenu = createAsyncThunk(
   async (storeId, thunkAPI) => {
     console.log("storeId", storeId);
     try {
-      const res = await api.get(`/store/${storeId}`);
-      return thunkAPI.fulfillWithValue(res.data.data[0].Menus);
+      const res = await instance.get(`/store/${storeId}`);
+      return thunkAPI.fulfillWithValue(res.data.store.Menus);
     } catch (err) {
       return thunkAPI.rejectWithValue(err);
     }
