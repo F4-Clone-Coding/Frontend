@@ -2,7 +2,7 @@
 
 ## 주요 page.img
 
-![배민 리드미 이미지](https://user-images.githubusercontent.com/100943412/199684947-144b09ea-2a55-42ac-ae49-3c8a99762e3a.png)
+![배민 리드미 이미지](https://user-images.githubusercontent.com/100943412/199686499-4890c442-5fb6-4f0c-98c5-7da10a20d3c3.png)
 
 ### 🛵 프로젝트 소개
 >  배달의 민족을 웹으로 구현하였습니다😉  
