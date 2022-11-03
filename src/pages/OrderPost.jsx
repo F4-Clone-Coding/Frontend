@@ -15,11 +15,6 @@ import { getCookieToken } from "../shared/cookie";
 
 const OrderPost = () => {
   const cookie = getCookieToken('accessToken')
-  useEffect(() => {
-    if (!cookie) {
-      navigate('/');
-    }
-  }, [])
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { storeId } = useParams();
@@ -51,12 +46,16 @@ const OrderPost = () => {
   console.log(tabId);
 
   useEffect(() => {
-    dispatch(
-      getAllMenu(
-        storeId,
-      )
-    );
+    if (!cookie) {
+      navigate('/');
+    } else {
+      dispatch(
+        getAllMenu(
+          storeId,
+        ));
+    }
   }, [dispatch, storeId]);
+
 
   return (
     <Layout>
