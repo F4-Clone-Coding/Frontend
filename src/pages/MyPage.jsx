@@ -12,19 +12,24 @@ import instance from '../shared/apis';
 import Swal from 'sweetalert2';
 import { getCookieToken, removeCookieToken, removeRefreshCookieToken } from '../shared/cookie';
 import OrderHistoryCard from '../components/OrderHistoryCard';
+import EditNickname from '../components/EditNickname';
 
 
 const MyPage = () => {
     const cookie = getCookieToken('accessToken')
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    // const userNickname = useSelector(state => state.user)
+    // console.log("name", userNickname)
 
     const [info, setInfo] = useState()
     const [orderList, setOrderList] = useState([])
     const [editName, setEditName] = useState();
+    const [newEditName, setNewEditName] = useState(editName)
 
     console.log("킥", orderList)
     console.log("얍222", editName)
+
     /**유저정보 가져오기 */
     const getUserdata = async () => {
         try {
@@ -39,31 +44,20 @@ const MyPage = () => {
         }
     }
 
-    // const getUserdata = () => {
-    //     instance.get("/user").then((res) => {
-    //         console.log("성공이다", res)
-    //         setInfo(res.data.user)
-    //         setEditName(res.data.user.nickname)
-    //         console.log("얍", res.data.user.nickname)
-    //     })
-    //         .catch((error) => {
-    //             console.log("실패다", error)
-    //         })
-
-    // }
-
     /**이름 변경 구간 */
-    const onChangeName = (e) => {
-        setEditName(e.target.value)
+    const onChangeName = async (e) => {
+        setNewEditName(e.target.value)
     }
+
     console.log("bi", editName)
     const onSubmitName = (e) => {
         e.preventDefault()
-        const formedData = new FormData();
-        formedData.append('imamge', imageSrc)
+        // const formedData = new FormData();
+        // formedData.append('imamge', imageSrc)
         const nameCheck = /^[가-힣0-9]{3,10}$/
         if (editName.length > 2 && editName.length < 11 && nameCheck.test(editName)) {
-            dispatch(editUserName({ nickname: editName, image: imageSrc }))
+            dispatch(editUserName({ nickname: editName }))
+            // setEditName(userNickname)
             Swal.fire({
                 icon: "success",
                 title: '닉네임 변경 완료!',
@@ -75,6 +69,7 @@ const MyPage = () => {
                 showConfirmButton: false,
                 timer: 1500,
             })
+
         } else {
             Swal.fire({
                 icon: "error",
@@ -88,7 +83,23 @@ const MyPage = () => {
                 timer: 1500,
             });
         }
+        getUserdata();
     }
+
+    const editNickname = async (userData) => {
+        console.log('userData', userData)
+        try {
+            const res = await instance.patch("/user/nickname", { nickname: userData })
+            console.log("변경성공", res)
+        } catch (error) {
+            console.log("변경실패", error)
+        }
+    }
+
+
+
+
+
     const [imageSrc, setImageSrc] = useState('https://mblogthumb-phinf.pstatic.net/MjAxOTA1MTdfMjg5/MDAxNTU4MDU5MjY3NzI0.La9iCTKSS9Cue6MbMeNSJADSkjSr0VMPlAsIdQYGjoYg.q_VK0tw6okzVQOBJbXGKFFGJkLJUqLVT26CZ9qe29Xcg.PNG.smartbaedal/%ED%97%A4%ED%97%A4%EB%B0%B0%EB%8B%AC%EC%9D%B4_%EC%9E%90%EB%A5%B8%EA%B2%83.png?type=w800');
 
     const onChangeImg = (e) => {
@@ -201,8 +212,7 @@ const MyPage = () => {
                     <StLabel htmlFor='photo' />
                     <StFileInput id="photo" type="file" onChange={onChangeImg} />
                     <StNicknameBox>
-                        <StInput type="text" value={editName} name="nickname" onChange={onChangeName} />
-                        <p className='c' onClick={onSubmitName} >저장</p>
+                        <EditNickname />
                     </StNicknameBox>
                 </NameBox>
                 <PasswordBox>
