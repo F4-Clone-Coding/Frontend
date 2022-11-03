@@ -5,11 +5,11 @@
 ![배민 리드미 이미지](https://user-images.githubusercontent.com/100943412/199684947-144b09ea-2a55-42ac-ae49-3c8a99762e3a.png)
 
 ### 🛵 프로젝트 소개
-> 📌 배달의 민족을 웹으로 구현하였습니다😉  
-> 📌 웹사이트 링크 🔗 https://fancy-biscotti-954d4e.netlify.app/
+>  배달의 민족을 웹으로 구현하였습니다😉  
+>  웹사이트 링크 🔗 https://fancy-biscotti-954d4e.netlify.app/
 
 ### 📅 프로젝트기간
-> 📌 2022.10.28 ~ 2022.11.03
+>  2022.10.28 ~ 2022.11.03
 
 ### ⚙️ 기술정보
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"> <img src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=black"> <img src="https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=Yarn&logoColor=white">
