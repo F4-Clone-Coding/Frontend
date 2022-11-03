@@ -1,7 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import useFetch from '../hooks/useFetch';
 
 import StoreCard from './StoreCard';
@@ -11,18 +9,13 @@ import styled from 'styled-components';
 import HorizontalScroll from 'react-scroll-horizontal';
 
 const Category = () => {
-  // const { stores } = useSelector((state) => state.stores)
-  // const [query, setQuery] = useState("")
   const [categoryId, setCategoryId] = useState(0);
   const [page, setPage] = useState(0)
   const { loading, error, stores } = useFetch(page, categoryId)
   const loader = useRef(null)
 
-  console.log("store1111", stores)
-
   const handleObserver = useCallback((entries) => {
     const target = entries[0];
-    console.log("target", target)
     if (target.isIntersecting) {
       setPage((prev) => prev + 1)
     }
@@ -76,10 +69,7 @@ const Category = () => {
   );
 }
 
-
 export default Category
-
-
 
 const CategoryBox = styled.div`
   display:flex;
@@ -89,7 +79,6 @@ const CategoryBox = styled.div`
   width: 390px;
   height: 50px;
 `
-
 const CardWrap = styled.div`
   max-height: 710px;
   display:flex;
