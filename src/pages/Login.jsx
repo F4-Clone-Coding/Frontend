@@ -39,7 +39,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                navigate("/");
+                navigate("/store");
 
             } catch (error) {
                 Swal.fire({

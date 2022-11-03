@@ -96,6 +96,10 @@ const CardWrap = styled.div`
   flex-direction: column;
   align-content: center;
   align-items: center;
-  
+  overflow-x: hidden;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
 `
 

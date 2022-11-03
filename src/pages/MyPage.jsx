@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Layout from '../components/Layout'
 import Button from '../elements/button';
@@ -12,7 +12,6 @@ import instance from '../shared/apis';
 import Swal from 'sweetalert2';
 import { getCookieToken, removeCookieToken, removeRefreshCookieToken } from '../shared/cookie';
 import OrderHistoryCard from '../components/OrderHistoryCard';
-import EditNickname from '../components/EditNickname';
 
 
 const MyPage = () => {
@@ -46,7 +45,7 @@ const MyPage = () => {
 
     /**이름 변경 구간 */
     const onChangeName = async (e) => {
-        setNewEditName(e.target.value)
+        setEditName(e.target.value)
     }
 
     console.log("bi", editName)
@@ -86,22 +85,9 @@ const MyPage = () => {
         getUserdata();
     }
 
-    const editNickname = async (userData) => {
-        console.log('userData', userData)
-        try {
-            const res = await instance.patch("/user/nickname", { nickname: userData })
-            console.log("변경성공", res)
-        } catch (error) {
-            console.log("변경실패", error)
-        }
-    }
 
-
-
-
-
+    /**프로필 이미지 미리보기 */
     const [imageSrc, setImageSrc] = useState('https://mblogthumb-phinf.pstatic.net/MjAxOTA1MTdfMjg5/MDAxNTU4MDU5MjY3NzI0.La9iCTKSS9Cue6MbMeNSJADSkjSr0VMPlAsIdQYGjoYg.q_VK0tw6okzVQOBJbXGKFFGJkLJUqLVT26CZ9qe29Xcg.PNG.smartbaedal/%ED%97%A4%ED%97%A4%EB%B0%B0%EB%8B%AC%EC%9D%B4_%EC%9E%90%EB%A5%B8%EA%B2%83.png?type=w800');
-
     const onChangeImg = (e) => {
         if (e.target.files[0]) {
             encodeFileToBase64(e.target.files[0])
@@ -121,7 +107,6 @@ const MyPage = () => {
             };
         });
     };
-
 
     /**패스워드 변경 구간 */
     const [editPw, setEditPw] = useState({
@@ -192,7 +177,6 @@ const MyPage = () => {
         }
     }, [])
 
-
     useEffect(() => {
         getUserdata()
     }, [])
@@ -212,7 +196,8 @@ const MyPage = () => {
                     <StLabel htmlFor='photo' />
                     <StFileInput id="photo" type="file" onChange={onChangeImg} />
                     <StNicknameBox>
-                        <EditNickname />
+                        <StInput type="text" value={editName} name="nickname" onChange={onChangeName} />
+                        <p className='c' onClick={onSubmitName} >저장</p>
                     </StNicknameBox>
                 </NameBox>
                 <PasswordBox>
