@@ -12,14 +12,14 @@ import { FaHome } from "react-icons/fa";
 const Store = () => {
   // 필요한지 확인
   const navigate = useNavigate();
-  // const cookie = getCookieToken('accessToken')
-  // useEffect(() => {
-  //   if (!cookie) {
-  //     navigate('/');
-  //   }
-  // }, [])
+  const cookie = getCookieToken('accessToken')
 
 
+  useEffect(() => {
+    if (!cookie) {
+      navigate('/');
+    }
+  }, [])
   return (
     <Layout>
       <HeaderBox>

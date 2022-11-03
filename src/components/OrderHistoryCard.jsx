@@ -4,12 +4,11 @@ import styled from 'styled-components'
 import BeaminImg from '../image/BeaminImg.png'
 
 const OrderHistoryCard = ({ orderCard }) => {
-    console.log("oc", orderCard.storeId)
+    console.log("oc", orderCard)
     const navigate = useNavigate()
 
 
     const orderTime = new Date(orderCard?.createdAt).getTime()
-
 
 
     function displayedAt(createdAt) {
@@ -32,6 +31,7 @@ const OrderHistoryCard = ({ orderCard }) => {
     }
 
     // `/store/${store?.storeId}`
+    console.log("time", displayedAt(orderTime))
 
     return (
         <StWrap onClick={() => navigate(`/store/${orderCard?.storeId}`, { state: { storeName: orderCard?.name } })}  >

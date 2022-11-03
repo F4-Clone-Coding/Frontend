@@ -23,7 +23,7 @@ function useFetch(page, categoryId) {
         sendQuery();
     }, [sendQuery, page]);
 
-  return { loading, error, stores };
+    return { loading, error, stores };
 }
 
 export default useFetch;

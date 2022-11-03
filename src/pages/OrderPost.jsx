@@ -15,11 +15,6 @@ import { getCookieToken } from "../shared/cookie";
 
 const OrderPost = () => {
   const cookie = getCookieToken('accessToken')
-  useEffect(() => {
-    if (!cookie) {
-      navigate('/');
-    }
-  }, [])
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { storeId } = useParams();
@@ -32,9 +27,9 @@ const OrderPost = () => {
 
   const onChangeLike = async () => {
     try {
-      const res = await instance.patch(`/store/${storeId}/like`)
+      const res = await instance.get(`/store/${storeId}/like`)
       console.log("res", res)
-      if (res.data.store.like) {
+      if (res.data.result) {
         setLike(!like)
       }
 
@@ -51,12 +46,16 @@ const OrderPost = () => {
   console.log(tabId);
 
   useEffect(() => {
-    dispatch(
-      getAllMenu(
-        storeId,
-      )
-    );
+    if (!cookie) {
+      navigate('/');
+    } else {
+      dispatch(
+        getAllMenu(
+          storeId,
+        ));
+    }
   }, [dispatch, storeId]);
+
 
   return (
     <Layout>
@@ -75,9 +74,7 @@ const OrderPost = () => {
               <FaPhoneAlt />
               전화
             </StBtn>
-            <StBtn>
-              {!like ? <FcLikePlaceholder onClick={onChangeLike} /> : <FcLike onClick={onChangeLike} />}
-            </StBtn>
+            {!like ? <StBtn><FcLikePlaceholder className="unLike" onClick={onChangeLike} /> 찜하기</StBtn> : <StBtn><FcLike className="inLike" onClick={onChangeLike} /> 찜하기</StBtn>}
             <StBtn>
               <FaRegShareSquare />
               공유
@@ -144,6 +141,14 @@ const StBtn = styled.div`
   &:hover {
     color: var(--brand-color);
   }
+  .unLike{
+    font-size: 24px;
+  }
+
+  .inLike{
+    font-size: 24px;
+  }
+
 `;
 
 const StTabWrap = styled.div`
