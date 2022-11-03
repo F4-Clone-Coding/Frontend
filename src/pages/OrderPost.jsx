@@ -25,7 +25,8 @@ const OrderPost = () => {
   const onChangeLike = async () => {
     try {
       const res = await instance.patch(`/store/${storeId}/like`)
-      if (res.data.result) {
+      console.log("res", res)
+      if (res.data.store.like) {
         setLike(!like)
       }
 
