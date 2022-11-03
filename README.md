@@ -14,6 +14,8 @@
 ### 📙 기술정보
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"> <img src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=black"> <img src="https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=Yarn&logoColor=white">
 
+<img src="https://img.shields.io/badge/Node.js-#339933?style=for-the-badge&logo=Yarn&logoColor=white">
+
 ### 📙 주요 기능
 > 📌 - 로그인/회원가입/로그아웃  
 > 📌 - 비밀번호, 닉네임, 수정  
