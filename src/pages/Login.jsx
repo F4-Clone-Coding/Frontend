@@ -39,7 +39,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                navigate("/store");
+                navigate("/");
 
             } catch (error) {
                 Swal.fire({
@@ -71,14 +71,14 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 1500
             })
-            navigate(-1);
+            navigate('/store');
         }
     })
 
     return (
         <Layout>
             <LoginWrap>
-                <div><IoClose className='cancel' onClick={() => navigate('/store')} /></div>
+                <div><IoClose className='cancel' onClick={() => navigate('/')} /></div>
                 <LogoTitle>
                     <p className="logoTitle">우리가<br />어떤 민족<br />입니까?</p>
                     <p className="subTitle">배달<span>만</span>민족</p>
