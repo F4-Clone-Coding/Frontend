@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Layout from "../components/Layout";
@@ -11,8 +11,16 @@ import styled from "styled-components";
 import { FaPhoneAlt, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import instance from "../shared/apis";
+import { getCookieToken } from "../shared/cookie";
 
 const OrderPost = () => {
+  const cookie = getCookieToken('accessToken')
+  useEffect(() => {
+    if (!cookie) {
+      navigate('/');
+    }
+  }, [])
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { storeId } = useParams();
   const { menus } = useSelector((state) => state.menus);

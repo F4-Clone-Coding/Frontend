@@ -177,9 +177,9 @@ const MyPage = () => {
                 showConfirmButton: false,
                 timer: 1500,
             });
-            navigate('/user/login');
+            navigate('/');
         }
-    })
+    }, [])
 
 
     useEffect(() => {

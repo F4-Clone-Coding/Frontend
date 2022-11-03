@@ -9,8 +9,15 @@ import { FaPhoneAlt, FaStore } from "react-icons/fa";
 import OrderCard from "../components/OrderCard";
 import { orderGet } from '../redux/modules/orderSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { getCookieToken } from '../shared/cookie';
 
 const OrderGet = () => {
+  const cookie = getCookieToken('accessToken')
+  useEffect(() => {
+    if (!cookie) {
+      nav('/');
+    }
+  }, [])
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { orderId } = useParams();
