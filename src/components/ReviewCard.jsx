@@ -18,7 +18,7 @@ const ReviewCard = ({ storeId }) => {
     
     if (review) {
       try {
-        const res = await instance.put(`/store/${storeId}/review`, { review });
+        const res = await instance.post(`/store/${storeId}/review`, { review });
         if (res.status === 200) {
           Swal.fire({
             position: "center",
