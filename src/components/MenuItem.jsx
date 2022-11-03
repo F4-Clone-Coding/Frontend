@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import coffee from "../image/coffee.jpg"
 
 const MenuItem = ({ menu, setTotalPrice, setMenuList }) => {
   const [count, setCount] = useState(0);
@@ -44,7 +45,7 @@ const MenuItem = ({ menu, setTotalPrice, setMenuList }) => {
           height: "100px",
           boxShadow: "var(--box-shadow)",
         }}
-        src="http://www.datanet.co.kr/news/photo/201902/131191_57145_3939.jpg"
+        src={menu?.image || coffee}
       />
     </StMenuBox>
   );

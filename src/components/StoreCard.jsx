@@ -9,12 +9,13 @@ const StoreCard = ({ store }) => {
 
     return (
         <CardBox onClick={() => navigate(`/store/${store?.storeId}`, { state: { storeName: store?.name } })}>
-            <img alt="a" className='img' src={BeaminImg} />
+            <img alt="a" className='img' src={store?.imageUrl || BeaminImg} />
             <TextBox>
                 <p id="p1">{store?.name}</p>
                 <div >
                     <p style={{ marginBottom: "5px" }}>⭐5.0(100+)</p>
-                    <p>배달비 무료</p>
+                    <span>배달비 무료</span>
+                    <span style={{marginLeft: "10px", color: "#999"}}>{store?.distance}</span>
                 </div>
             </TextBox>
         </CardBox>

@@ -36,21 +36,37 @@ export const editUserName = createAsyncThunk(
 
 /**유저 비밀번호 수정하기 */
 export const editUserPw = createAsyncThunk(
-  "user/editUserPw",
-  async (userDeta, thunkAPI) => {
-    try {
-      const { data } = await instance.patch("/user/password", userDeta);
-      Swal.fire(
-        "비밀번호 변경 완료!",
-        "비밀번호를 성공적으로 변경되었습니다!",
-        "success"
-      );
-      return thunkAPI.fulfillWithValue(data);
-    } catch (error) {
-      Swal.fire("비밀번호 변경 실패!", `기존 비밀번호와 다릅니다!`, "error");
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
+"user/editUserPw",
+async (userDeta, thunkAPI) => {
+try {
+const { data } = await instance.patch("/user/password", userDeta);
+Swal.fire({
+icon: "success",
+title: "비밀번호 변경 완료!",
+text: "비밀번호를 성공적으로 변경되었습니다!",
+width: 350,
+heigt: 200,
+background:
+"#fff url(https://images.velog.io/images/kongsub/post/96e23619-25ab-4d99-a5fd-6e31a9e7fa8b/100600104.2.jpg)",
+showConfirmButton: false,
+timer: 1500,
+});
+return thunkAPI.fulfillWithValue(data);
+} catch (error) {
+Swal.fire({
+icon: "error",
+title: "번호 변경 실패!",
+text: "기존 비밀번호와 다릅니다!",
+width: 350,
+heigt: 200,
+background:
+"#fff url(https://images.velog.io/images/kongsub/post/96e23619-25ab-4d99-a5fd-6e31a9e7fa8b/100600104.2.jpg)",
+showConfirmButton: false,
+timer: 1500,
+});
+return thunkAPI.rejectWithValue(error);
+}
+}
 );
 
 // ----- slice -----
